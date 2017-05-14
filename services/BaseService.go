@@ -2,11 +2,20 @@ package services
 
 import (
 	"github.com/gin-gonic/gin"
+	"fmt"
 )
 type User struct{
 	Id string
 	Username string
 }
+
+type Result struct {
+	Code int
+	Status int
+	Data interface{}
+}
+
+
 
 /**
  * User: lizhengxinag
@@ -14,6 +23,7 @@ type User struct{
  * functionRole:验证登录
  */
 func isLogin(c *gin.Context) User {
+	fmt.Println(c.ContentType())
 	Token :=  c.Param("Token")
 	user := User{}
 	if Token != "" {
@@ -24,4 +34,12 @@ func isLogin(c *gin.Context) User {
 		user.Username = "wj"
 	}
 	return user
+}
+
+func result(data interface{},status int,code int) Result {
+	result := Result{}
+	result.Code = code
+	result.Status = status
+	result.Data = data
+	return result
 }

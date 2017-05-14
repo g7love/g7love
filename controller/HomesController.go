@@ -9,6 +9,6 @@ var Homes homes = homes{}
 type homes struct{}
 
 func (u *homes) Loginjudge(c *gin.Context) {
-	abc := services.LoginJudge(c)
-	c.JSON(http.StatusOK, gin.H{"todos": abc})
+	result := services.LoginJudge(c)
+	c.JSON(http.StatusOK, result)
 }

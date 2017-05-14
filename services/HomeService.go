@@ -6,8 +6,7 @@ import (
 /*
  * 判断登陆　2016-10-12 23:44
  */
-var user1 User
-func LoginJudge(c *gin.Context) User {
-	user1 =  isLogin(c)
-	return user1
+func LoginJudge(c *gin.Context) Result {
+	user :=  isLogin(c)
+	return result(user,1,3)
 }

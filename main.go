@@ -34,43 +34,15 @@ var (
 
 func main() {
 	migrate()
-
 	router := gin.Default()
-	router.Static("/css", "./assets/dist/css")
-	router.LoadHTMLGlob("templates/*")
 
-	router.GET("/ping", func(c *gin.Context) {
-		c.String(http.StatusOK, "pong")
-	})
-
-	router.GET("/", controller.Users.Top)
-	router.GET("/login", controller.Users.Login)
-	router.GET("/logout", controller.Users.Logout)
-	router.GET("/register", controller.Users.Register)
-	router.POST("/authenticate", controller.Users.Authenticate)
-	router.POST("/users/create", controller.Users.Create)
-
-	router.GET("/api/todos", apiHandle(), controller.Todos.List)
-	router.POST("/api/todos", apiHandle(), controller.Todos.Create)
-
-	router.GET("/loginjudge", controller.Homes.Loginjudge)
+	router.GET("/loginjudge", apiHandle(), controller.Homes.Loginjudge)
 
 	http.ListenAndServe(":"+port(), router)
 }
 
 func apiHandle() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var user model.User
-
-		db := database.GetDB()
-		if err := db.Where("token = ?", c.Request.Header.Get("X-GODEMO-TOKEN")).Find(&user).Error; err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"errors": []string{"User not found"}})
-			c.Abort()
-			return
-		}
-		c.Set("user", user)
-		c.Next()
-
 		errs := make([]string, 0, len(c.Errors))
 		for _, e := range c.Errors {
 			switch e.Err {
