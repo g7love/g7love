@@ -33,10 +33,20 @@ var (
 )
 
 func main() {
-	migrate()
+	//migrate()
 	router := gin.Default()
 
-	router.GET("/loginjudge", apiHandle(), controller.Homes.Loginjudge)
+	HomeGroup := router.Group("/home")
+	{
+		HomeGroup.GET("/loginjudge", controller.Homes.Loginjudge)
+	}
+
+	registeredGroup := router.Group("/registered")
+	{
+		registeredGroup.GET("/provinces", controller.Registered.Provinces)
+	}
+
+
 
 	http.ListenAndServe(":"+port(), router)
 }
@@ -98,5 +108,5 @@ func port() string {
 func migrate() {
 	db := database.GetDB()
 
-	db.AutoMigrate(&model.User{}, &model.Todo{})
+	db.AutoMigrate(&model.Registered{}, &model.Todo{})
 }
