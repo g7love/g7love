@@ -2,11 +2,7 @@ package model
 import (
 	"g7love/database"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
-	_ "fmt"
-	_ "time"
-	"time"
-	"fmt"
+	"strconv"
 )
 type Registered struct {
 	gorm.Model
@@ -18,15 +14,17 @@ type Registered struct {
 type School struct {
 	Id			int
 	Name		string
-	Parentid	int
-	Createtime	time.Time
-	Updatetime	time.Time
-	Deleted 	int
+	parentid	int
+	deleted 	int
 }
 
-func Creat(id string) *gorm.DB {
-	fmt.Println(id)
+func Creat(parentid string) []School {
+	parent := 0
+	if parentid != ""{
+		parent,_ = strconv.Atoi(parentid)
+	}
+	var result []School
 	db := database.GetDB()
-	ac := db.Find(&School{})
-	return ac
+	db.Where("parentid = ?",parent).Find(&result)
+	return result
 }

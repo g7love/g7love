@@ -46,6 +46,10 @@ func main() {
 		registeredGroup.GET("/provinces", controller.Registered.Provinces)
 	}
 
+	dynamicGroup := router.Group("/dynamic")
+	{
+		dynamicGroup.GET("/getdynamic", controller.Dynamic.Getdynamic)
+	}
 
 
 	http.ListenAndServe(":"+port(), router)

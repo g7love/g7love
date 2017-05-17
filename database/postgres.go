@@ -36,6 +36,7 @@ func connect() *gorm.DB {
 	conn.DB().SetMaxIdleConns(max / 5)
 	conn.DB().SetMaxOpenConns(max)
 	conn.SingularTable(true)
+	conn.LogMode(true)
 	return conn
 }
 

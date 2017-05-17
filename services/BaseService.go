@@ -25,6 +25,7 @@ func isLogin(c *gin.Context,authority string) User {
 	//需要忽略验证的模块
 	ignoreValidation := map[string] int{
 		"HomesLoginjudge" : 1,
+		"dynamicGetdynamic" : 1,
 	}
 	fmt.Println("***********")
 	fmt.Println(c.ContentType())
