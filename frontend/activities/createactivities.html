@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title></title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/www/js/layer/layer.js"></script>
+    <script src="/public/js/load/load.js"></script>
+</head>
+<style>
+
+</style>
+<body >
+<div class="container">
+    <form id="frmSearch">
+        <section class="form-group" style="margin-left: 20%;" id="tsfto">
+            <label class="col-sm-2 control-label" style="width: auto;margin-top: 7px; font-size: medium;">字段:</label>
+            <input type="text" class="form-control" id="fielda" name ="fielda" placeholder="" style="width: auto;float: left;height: 30px;margin-top: 5px;">
+            <label class="col-sm-2 control-label" style="width: auto;margin-top: 7px; font-size: medium;">描述:</label>
+            <input type="text" class="form-control" id="fieldb" name ="fieldb" placeholder="" style="width: auto;float: left;height: 30px;margin-top: 5px;">
+            <img src="/activities/img/add.png" style="cursor: pointer; margin-top: 7px; margin-right: 25%;" onclick="addNewTsf();">
+            <br>
+        </section>
+    </form>
+    <button type="button" id="create" style="margin-left: 43%;margin-top: 10px;font-size: medium;" class="btn btn-primary">提交</button>
+</div>
+</body>
+<script type="text/javascript"  src="/activities/js/createactivities.js"></script>
+</html>

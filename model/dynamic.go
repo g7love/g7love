@@ -23,6 +23,10 @@ type ResultsData struct {
 	Birthday string
 	Gender string
 	School string
+	Time string
+	ReportNumTag int
+	PraiseTag int
+	ForwardingNumTag int
 }
 
 type Dynamic struct {
@@ -41,5 +45,11 @@ func Getdynamic() []ResultsData {
 			Joins("LEFT JOIN `school` ON registered.school = school.id").
 			Where("dynamic.deleted = ?",0).
 			Where(&dynamicArg).Scan(&result)
+	for i:=0; i < len(result);i++ {
+		result[i].Time = "2天前"
+		result[i].ReportNum = 1
+		result[i].PraiseTag =2
+		result[i].ForwardingNumTag = 54
+	}
 	return result
 }

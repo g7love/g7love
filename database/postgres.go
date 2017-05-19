@@ -28,7 +28,7 @@ func connect() *gorm.DB {
 	url := getDatabaseUrl()
 	max := getMaxConnection()
 	fmt.Println(url)
-	conn, err := gorm.Open("mysql", "lzx:lzx@/socialnetworking?charset=utf8&loc=Local")
+	conn, err := gorm.Open("mysql", "lzx:lzx@/socialnetworking?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		panic(err)
 	}

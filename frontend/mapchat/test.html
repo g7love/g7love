@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>G7love</title>
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="/public/js/jquery/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/public/js/layer/layer.js"></script>
+    <link rel="stylesheet" href="/public/js/layer/layui/src/css/layui.css">
+    <script src="/public/js/layer/layui/src/layui.js"></script>
+
+</head>
+<body>
+<div id="abc" style="width: 500px;height: 80px;">
+
+</div>
+<!--<div class="site-demo-button">
+    <button class="layui-btn site-demo-layim" data-type="chat">创造一个临时会话</button>
+    <button class="layui-btn site-demo-layim" data-type="message">制造一个好友发过来的消息</button>
+    <button class="layui-btn site-demo-layim" data-type="messageTemp">制造一个临时会话消息</button>
+    <button class="layui-btn site-demo-layim" data-type="addFriend">增加一个好友</button>
+    <button class="layui-btn site-demo-layim" data-type="addGroup">增加一个群组</button>
+    <button class="layui-btn site-demo-layim" data-type="removeFriend">删除一个好友</button>
+    <button class="layui-btn site-demo-layim" data-type="removeGroup">删除一个群组</button>
+
+</div>-->
+
+<script>
+
+    layui.use('layim', function(layim){
+
+        //建立WebSocket通讯
+        //注意：也可以直接采用 socket.io的版本，下面是以原生WS为例
+
+        var socket = new WebSocket('ws://127.0.0.1:9502');
+
+       /* //发送一个消息
+        socket.on("connect", function($cli) {
+            socket.send('Hi Server, I am LayIM!');
+        });*/
+       /* codelayui.code
+        socket.send(JSON.stringify({
+            type: '' //随便定义，用于在服务端区分消息类型
+            ,data: {}
+        }));*/
+        //连接成功时触发
+        socket.onopen = function(){
+            socket.send('XXX连接成功');
+            socket.send('Hi Server, I am LayIM!');
+        };
+
+        //监听收到的消息
+        socket.onmessage = function(res){
+            //res为接受到的值，如 {"emit": "messageName", "data": {}}
+            //emit即为发出的事件名，用于区分不同的消息
+            console.log(res)
+        };
+
+        //基本上常用的就上面几个了，是不是非一般的简单？
+    });
+
+</script>
+</body>
+<!--
+<script type="text/javascript" src="/mapchat/js/index.js"></script>
+-->
+</html>

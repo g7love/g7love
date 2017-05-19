@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title></title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/www/js/layer/layer.js"></script>
+    <script src="/public/js/load/load.js"></script>
+    <link rel="stylesheet" href="/public/js/bootstraptable/css/bootstrap-table.min.css">
+    <!--<script src="assets/bootstrap2.3/js/bootstrap.min.js"></script>-->
+    <script src="/public/js/bootstraptable/js/tableExport.js"></script>
+    <script src="/public/js/bootstraptable/js/bootstrap-table.js"></script>
+    <script src="/public/js/bootstraptable/js/bootstrap-table-export.js"></script>
+</head>
+<style>
+
+</style>
+<body >
+<div class="container">
+    <table id="table"
+           data-toolbar="#toolbar"
+           data-search="true"
+           data-show-refresh="true"
+           data-show-toggle="true"
+           data-show-columns="true"
+           data-show-export="true"
+           data-detail-view="true"
+           data-detail-formatter="detailFormatter"
+           data-minimum-count-columns="2"
+           data-show-pagination-switch="true"
+           data-pagination="true"
+           data-id-field="id"
+           data-page-size="50"
+           data-page-list="[200,500,800,ALL]"
+           data-show-footer="false"
+           data-side-pagination="server"
+           data-response-handler="responseHandler">
+    </table>
+</div>
+</body>
+<script type="text/javascript"  src="/activities/js/details.js"></script>
+</html>
