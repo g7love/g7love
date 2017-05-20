@@ -42,6 +42,16 @@ $(document).ready(function(){
         ready: function() {
         },
         methods: {
+            timetrans: function(date){
+                var date = new Date(date*1000);//如果date为10位不需要乘1000
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+                var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+                var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+                var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+                return Y+M+D+h+m+s;
+            },
             getData: function() {
                 var self = this;
                 load('dynamic', 'getdynamic', {'tag':1}, function(resultData) {
@@ -63,7 +73,7 @@ $(document).ready(function(){
                                 areLookingAt:200,
                                 followers:10,
                                 time:resultData[i].time,
-                                titleTime:resultData[i].createtime,
+                                titleTime:self.timetrans(resultData[i].createtime),
                                 content:resultData[i].content,
                                 likeNum:resultData[i].praise,
                                 reportNum:resultData[i].reportNum,

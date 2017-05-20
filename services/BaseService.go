@@ -2,8 +2,8 @@ package services
 
 import (
 	"github.com/gin-gonic/gin"
-	"fmt"
 	"net/http"
+	"strconv"
 )
 type User struct{
 	Id string
@@ -27,16 +27,13 @@ func isLogin(c *gin.Context,authority string) User {
 		"HomesLoginjudge" : 1,
 		"dynamicGetdynamic" : 1,
 	}
-	fmt.Println("***********")
-	fmt.Println(c.ContentType())
-	fmt.Println("***********")
 	Token :=  c.Param("Token")
 	user := User{}
 	if Token != "" {
-		user.Id = "2011312050"
+		user.Id = "100"
 		user.Username = "wj"
 	} else if ignoreValidation[authority] == 1 {
-		user.Id = ""
+		user.Id = "100"
 		user.Username = ""
 	} else {
 		//强制登录
@@ -58,10 +55,32 @@ func result(data interface{},status int,code int) Result {
 	result.Code = code
 	result.Status = status
 	result.Data = data
-	/*resultData, err := json.Marshal(result)
-	if err != nil {
-		log.Fatalf("JSON marshaling failed: %s", err)
-	}
-	fmt.Printf("%s\n", resultData)*/
 	return result
+}
+
+/*
+ * 计算时间差,返回时间差
+ */
+func TimeDifference(startdate int64, enddate int64 ) string {
+	timediff := enddate - startdate
+	timeDifference :=""
+	days := int(timediff/86400)
+	if days > 0 {
+		timeDifference = strconv.Itoa(days)+"天前"
+	} else {
+		remain := timediff % 86400
+		hours := int(remain/3600)
+		if hours > 0 {
+			timeDifference = strconv.Itoa(hours)+"小时前"
+		} else {
+			remain := remain % 3600
+			mins := int(remain / 60)
+			if mins > 0 {
+				timeDifference = strconv.Itoa(mins)+"分钟前"
+			} else {
+				timeDifference = strconv.Itoa(mins)+"秒钟前"
+			}
+		}
+	}
+	return timeDifference
 }
