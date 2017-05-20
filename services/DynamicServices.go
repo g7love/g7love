@@ -28,5 +28,4 @@ func Getdynamic(c *gin.Context) Result {
 		}
 	}
 	return result(resultData,1,0)
-
 }

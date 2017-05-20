@@ -10,8 +10,7 @@ import (
  */
 func Provinces(c *gin.Context) Result {
 	parentid := c.Param("parentid")
-	resultData := model.Creat(parentid)
-
+	resultData := model.GetProvinces(parentid)
 	return result(resultData,1,0)
 
 }

@@ -2,8 +2,25 @@ package model
 
 import (
 	"g7love/database"
-	"fmt"
+	"github.com/jinzhu/gorm"
 )
+
+/**
+ * 获取帖子条件结构体
+ */
+type Dynamic struct {
+	gorm.Model
+	Userid string  `gorm:"size:10;not null;index"` //用户id
+	Content string `gorm:"size:256"` //动态内容
+	Pic1	string `gorm:"size:256"` //图片1
+	Pic2	string `gorm:"size:256"` //图片2
+	Pic3	string `gorm:"size:256"` //图片3
+	Pic4	string `gorm:"size:256"` //图片4
+	ReportNum int  `gorm:"size:3"`   //举报次数
+	Praise int  `gorm:"size:3"`   //点赞次数
+	Createtime int64 `gorm:"size:10"` //创建时间
+	ForwardingNum int  `gorm:"size:3"`   //转发次数
+}
 
 /**
  * 返回帖子
@@ -34,14 +51,6 @@ type ResultsData struct {
 }
 
 /**
- * 获取帖子条件结构体
- */
-type Dynamic struct {
-	Id int
-	Userid string
-}
-
-/**
  * 获取帖子
  */
 func Getdynamic(userId string) []ResultsData {
@@ -57,30 +66,4 @@ func Getdynamic(userId string) []ResultsData {
 			Where("dynamic.deleted = ?",0).
 			Where(&dynamicArg).Scan(&result)
 	return result
-}
-
-/**
- * 获取帖子点赞等结构体
- */
-
-type  Dynamiclog  struct {
-	ReportNum int
-	Praise int
-	ForwardingNum int
-	Userid string
-	Dynamicid int
-}
-
-/**
- * 获取点赞等
- */
-
-func ResultDynamicLog(userid string, dynamicId int) Dynamiclog {
-	var argsDynamiclog Dynamiclog
-	argsDynamiclog.Userid = userid
-	argsDynamiclog.Dynamicid = dynamicId
-	db := database.GetDB()
-	db.Where(argsDynamiclog).First(&argsDynamiclog)
-	fmt.Println(argsDynamiclog)
-	return  argsDynamiclog
 }
