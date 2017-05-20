@@ -9,17 +9,23 @@ import (
 //各省份的学校
 type School struct {
 	gorm.Model
-	Name		string	`gorm:"size:255"` //省份学校专业
-	Parentid	int		`gorm:"size:2"`  //父id
+	Name		string	`gorm:"size:255"`	//省份学校专业
+	Parentid	int		`gorm:"size:2"`  		//父id
 }
 
-func GetProvinces(parentid string) []School {
+type ResultSchool struct {
+	Name		string	`json:"name"`	//省份学校专业
+	Parentid	int		`json:"parentid"`  		//父id
+}
+
+func GetProvinces(parentid string) []ResultSchool {
+	var school  School
 	parent := 0
 	if parentid != ""{
 		parent,_ = strconv.Atoi(parentid)
 	}
-	var result []School
+	var result []ResultSchool
 	db := database.GetDB()
-	db.Where("parentid = ?",parent).Find(&result)
+	db.Select("name,parentid").Where("parentid = ?",parent).Find(&school).Scan(&result)
 	return result
 }

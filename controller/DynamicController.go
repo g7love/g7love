@@ -17,3 +17,8 @@ func (u *dynamic) Getdynamic(c *gin.Context) {
 	result := services.Getdynamic(c)
 	c.JSON(http.StatusOK, result)
 }
+
+func (u *dynamic) Posting(c *gin.Context) {
+	result := services.Posting(c)
+	c.JSON(http.StatusOK, result)
+}

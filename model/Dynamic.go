@@ -67,3 +67,18 @@ func Getdynamic(userId string) []ResultsData {
 			Where(&dynamicArg).Scan(&result)
 	return result
 }
+
+func SavePosting( content string,userId string) int {
+	var SavePosting  Dynamic
+	SavePosting.Content  = content
+	SavePosting.Userid = userId
+	db := database.GetDB()
+	db.Save(&SavePosting)
+	var result int
+	if err := db.Save(&SavePosting).Error; err != nil {
+		result = 1
+	} else {
+		result = 0
+	}
+	return result
+}

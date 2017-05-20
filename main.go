@@ -33,7 +33,7 @@ var (
 )
 
 func main() {
-	//migrate()
+	migrate()
 	router := gin.Default()
 
 	HomeGroup := router.Group("/home")
@@ -49,6 +49,7 @@ func main() {
 	dynamicGroup := router.Group("/dynamic")
 	{
 		dynamicGroup.POST("/getdynamic",apiHandle(), controller.Dynamic.Getdynamic)
+		dynamicGroup.POST("/posting",apiHandle(), controller.Dynamic.Posting)
 	}
 
 
@@ -111,6 +112,6 @@ func port() string {
 
 func migrate() {
 	db := database.GetDB()
-
-	db.AutoMigrate(&model.Registered{}, &model.Todo{})
+	db.AutoMigrate(&model.Dynamic{}, &model.Dynamiclog{},&model.Registered{},
+		&model.School{},&model.Thumblog{})
 }

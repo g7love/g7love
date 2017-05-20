@@ -29,6 +29,7 @@ func isLogin(c *gin.Context,authority string) User {
 	}
 	Token :=  c.Param("Token")
 	user := User{}
+	Token = "lzhx"
 	if Token != "" {
 		user.Id = "100"
 		user.Username = "wj"

@@ -109,7 +109,7 @@ function posting(args) {
             shift: 12
         });
     }else {
-        load('home', 'posting', {'data':args,'count':args['count']}, function(resultData) {
+        load('dynamic', 'posting', {'data':args,'count':args['count']}, function(resultData) {
             $("#post").click();
             personal();
         });

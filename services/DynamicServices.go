@@ -29,3 +29,14 @@ func Getdynamic(c *gin.Context) Result {
 	}
 	return result(resultData,1,0)
 }
+
+/*
+ * 获取动态　2017-05-20 12:57
+ */
+func Posting(c *gin.Context) Result {
+	user :=  isLogin(c,"dynamicPosting")
+	userId := user.Id
+	content := c.Param("count")
+	resultData := model.SavePosting(content,userId)
+	return result(resultData,1,0)
+}
