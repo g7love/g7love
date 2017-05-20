@@ -5,28 +5,28 @@ import (
 )
 
 type ResultsData struct {
-	Id int
-	Userid int
-	Content string
-	Pic1 string
-	Pic2 string
-	Pic3 string
-	Pic4 string
-	Createtime []uint8
-	Praise int
-	ForwardingNum int
-	ReportNum int
-	HeadPortrait string
-	BackgroundImage string
-	Motto string
-	Nickname string
-	Birthday string
-	Gender string
-	School string
-	Time string
-	ReportNumTag int
-	PraiseTag int
-	ForwardingNumTag int
+	Id int `json:"id"`
+	Userid int `json:"userid"`
+	Content string `json:"content"`
+	Pic1 string `json:"pic_1"`
+	Pic2 string `json:"pic_2"`
+	Pic3 string `json:"pic_3"`
+	Pic4 string `json:"pic_4"`
+	Createtime []uint8 `json:"createtime"`
+	Praise int `json:"praise"`
+	ForwardingNum int `json:"forwarding_num"`
+	ReportNum int `json:"report_num"`
+	HeadPortrait string `json:"head_portrait"`
+	BackgroundImage string `json:"background_image"`
+	Motto string `json:"motto"`
+	Nickname string `json:"nickname"`
+	Birthday string `json:"birthday"`
+	Gender string `json:"gender"`
+	School string `json:"school"`
+	Time string `json:"time"`
+	ReportNumTag int `json:"report_num_tag"`
+	PraiseTag int `json:"praise_tag"`
+	ForwardingNumTag int `json:"forwarding_num_tag"`
 }
 
 type Dynamic struct {
@@ -51,5 +51,11 @@ func Getdynamic() []ResultsData {
 		result[i].PraiseTag =2
 		result[i].ForwardingNumTag = 54
 	}
+
+	/*data, err := json.Marshal(result)
+	if err != nil {
+		log.Fatalf("JSON marshaling failed: %s", err)
+	}
+	fmt.Printf("%s\n", data)*/
 	return result
 }

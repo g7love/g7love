@@ -12,10 +12,10 @@ type Registered struct {
 }
 
 type School struct {
-	Id			int
-	Name		string
-	parentid	int
-	deleted 	int
+	Id			int `json:"id"`
+	Name		string `json:"name"`
+	parentid	int `json:"parentid"`
+	deleted 	int `json:"deleted"`
 }
 
 func Creat(parentid string) []School {

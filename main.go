@@ -38,17 +38,17 @@ func main() {
 
 	HomeGroup := router.Group("/home")
 	{
-		HomeGroup.POST("/loginjudge", controller.Homes.Loginjudge)
+		HomeGroup.POST("/loginjudge",apiHandle(), controller.Homes.Loginjudge)
 	}
 
 	registeredGroup := router.Group("/registered")
 	{
-		registeredGroup.POST("/provinces", controller.Registered.Provinces)
+		registeredGroup.POST("/provinces",apiHandle(), controller.Registered.Provinces)
 	}
 
 	dynamicGroup := router.Group("/dynamic")
 	{
-		dynamicGroup.POST("/getdynamic", controller.Dynamic.Getdynamic)
+		dynamicGroup.POST("/getdynamic",apiHandle(), controller.Dynamic.Getdynamic)
 	}
 
 

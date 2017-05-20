@@ -11,9 +11,9 @@ type User struct{
 }
 
 type Result struct {
-	Code int
-	Status int
-	Data interface{}
+	Code int `json:"code"`
+	Status int `json:"status"`
+	Data interface{} `json:"data"`
 }
 
 /**
@@ -58,5 +58,10 @@ func result(data interface{},status int,code int) Result {
 	result.Code = code
 	result.Status = status
 	result.Data = data
+	/*resultData, err := json.Marshal(result)
+	if err != nil {
+		log.Fatalf("JSON marshaling failed: %s", err)
+	}
+	fmt.Printf("%s\n", resultData)*/
 	return result
 }
