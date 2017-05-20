@@ -15,7 +15,7 @@ layui.use('layim', function(layim){
     layim.config({
         //获取主面板列表信息
         init: {
-            url: 'http://g7love.com/mapchat/index.json' //接口地址（返回的数据格式见下文）
+            url: 'http://socialnetworking.com/mapchat/index.json' //接口地址（返回的数据格式见下文）
             ,type: 'get' //默认get，一般可不填
             ,data: {} //额外参数
         }
@@ -48,7 +48,7 @@ layui.use('layim', function(layim){
         ,isfriend: true //是否开启好友（默认true，即开启）
         ,isgroup: true //是否开启群组（默认true，即开启）
         ,right: '0px' //默认0px，用于设定主面板右偏移量。该参数可避免遮盖你页面右下角已经的bar。
-        ,chatLog: 'http://g7love.com/mapchat/index.html' //聊天记录地址（如果未填则不显示）
+        ,chatLog: 'http://socialnetworking.com/mapchat/index.html' //聊天记录地址（如果未填则不显示）
         ,find: '/find/' //查找好友/群的地址（如果未填则不显示）
         ,copyright: true //是否授权，如果通过官网捐赠获得LayIM，此处可填true
     });

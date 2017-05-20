@@ -2,14 +2,13 @@ function load(module, method, params, callback) {
     module = module || 'index';
     method = method || 'index';
     params = params || {};
-    params['Token'] = getCookie('Token');
     callback = callback || false;
     var self = this,
         result = false;
-    var url = 'http://shejiao.com:8080/';
+    var url = 'http://shejiao.com/';
     var purl =url + module + '/' + method;
     var result = false;
-   $.ajax({
+    $.ajax({
         type: 'POST',
         url: purl,
         async:true,
@@ -46,13 +45,3 @@ function load(module, method, params, callback) {
         }
     });
 };
-
-//获取Cookie
-function getCookie(name)
-{
-    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-    if(arr=document.cookie.match(reg))
-        return unescape(arr[2]);
-    else
-        return null;
-}
