@@ -4,14 +4,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"g7love/model"
 	"time"
-	"fmt"
 )
 
 /*
  * 获取动态　2017-05-20 12:57
  */
 func Getdynamic(c *gin.Context) Result {
-	user :=  isLogin(c,"dynamicGetdynamic")
+	user :=  c.MustGet("user").(User)
 	id := user.Id
 	resultData := model.Getdynamic(id)
 	currentTime := time.Now().Unix()
@@ -35,10 +34,9 @@ func Getdynamic(c *gin.Context) Result {
  * 获取动态　2017-05-20 12:57
  */
 func Posting(c *gin.Context) Result {
-	user :=  isLogin(c,"dynamicPosting")
+	user :=  c.MustGet("user").(User)
 	userId := user.Id
 	content := c.PostForm("count")
-	fmt.Println(content)
 	resultData := model.SavePosting(content,userId)
 	return result(resultData,1,0)
 }

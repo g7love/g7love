@@ -1,8 +1,6 @@
 package services
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
 	"strconv"
 )
 type User struct{
@@ -16,36 +14,6 @@ type Result struct {
 	Data interface{} `json:"data"`
 }
 
-/**
- * User: lizhengxinag
- * createtime: 17-05-14 14:04
- * functionRole:验证登录
- */
-func isLogin(c *gin.Context,authority string) User {
-	//需要忽略验证的模块
-	ignoreValidation := map[string] int{
-		"HomesLoginjudge" : 1,
-		"dynamicGetdynamic" : 1,
-	}
-	Token :=  c.Param("Token")
-	user := User{}
-	if Token != "" {
-		user.Id = "100177"
-		user.Username = "wj"
-		c.Abort()
-	} else if ignoreValidation[authority] == 1 {
-		user.Id = ""
-		user.Username = ""
-		c.Abort()
-	} else {
-		//强制登录
-		data :=result("",0,0)
-		c.JSON(http.StatusOK, data)
-		c.Abort()
-	}
-
-	return user
-}
 
 /*
  * 封装返回的结果

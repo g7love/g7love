@@ -6,7 +6,6 @@ import (
 	"strconv"
 	"time"
 	"math/rand"
-	"fmt"
 )
 
 /*
@@ -51,7 +50,6 @@ func Registered(c *gin.Context) Result {
 	}
 	date := mouth+"/"+day+"/"+year
 	birthday, _ := time.Parse("01/02/2006", date)
-	fmt.Println(birthday)
 	userId := getUserId("100000")
 	resultData := model.RegisteredSave(provinces,school,birthday.Unix(),email,nickname,userId)
 	return result(resultData,1,0)

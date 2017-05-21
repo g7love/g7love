@@ -2,7 +2,6 @@ package model
 
 import (
 	"github.com/jinzhu/gorm"
-	"fmt"
 	"g7love/database"
 )
 
@@ -27,6 +26,5 @@ func ResultDynamicLog(userid string, dynamicId int) Dynamiclog {
 	argsDynamiclog.DynamicId = dynamicId
 	db := database.GetDB()
 	db.Where(argsDynamiclog).First(&argsDynamiclog)
-	fmt.Println(argsDynamiclog)
 	return  argsDynamiclog
 }

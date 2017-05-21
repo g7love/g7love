@@ -6,6 +6,7 @@ import (
 	"g7love/controller"
 	"g7love/database"
 	"g7love/model"
+	"g7love/services"
 	"gopkg.in/bluesuncorp/validator.v5"
 	"io"
 	"net/http"
@@ -71,19 +72,29 @@ func result(data interface{},status int,code int) resultdata {
 	return result
 }
 
+
+
+/**
+ * User: lizhengxinag
+ * createtime: 17-05-14 14:04
+ * functionRole:验证登录
+ */
 func apiHandle(authority string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		//需要忽略验证的模块
 		ignoreValidation := map[string] int{
-			"HomesLoginjudge" : 1,
-			"dynamicGetdynamic" : 1,
+			"HomeLoginjudge" : 1,
+			"RegisteredProvinces" : 1,
+			"RegisteredRegistered":1,
+			"DynamicGetdynamic":1,
 		}
-		var user model.Registered
+		var userData services.User
 		Token :=  c.Param("Token")
+		Token = "aaaaa"
 		if Token != "" {
-			user.Userid = "100177"
+			userData.Id = "100177"
 		} else if ignoreValidation[authority] == 1 {
-			user.Userid = ""
+			userData.Id = ""
 		} else {
 			//强制登录
 			data :=result("",0,0)
@@ -91,7 +102,7 @@ func apiHandle(authority string) gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-		c.Set("user", user)
+		c.Set("user", userData)
 		c.Next()
 		errs := make([]string, 0, len(c.Errors))
 		for _, e := range c.Errors {

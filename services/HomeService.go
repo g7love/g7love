@@ -7,7 +7,7 @@ import (
  * 判断登陆　2016-10-12 23:44
  */
 func LoginJudge(c *gin.Context) Result {
-	user :=  isLogin(c,"HomesLoginjudge")
+	user :=  c.MustGet("user").(User)
 	if user.Id != ""{
 		return result(1,1,0)
 	} else {
