@@ -38,26 +38,61 @@ func main() {
 
 	HomeGroup := router.Group("/home")
 	{
-		HomeGroup.POST("/loginjudge",apiHandle(), controller.Homes.Loginjudge)
+		HomeGroup.POST("/loginjudge",apiHandle("HomeLoginjudge"), controller.Homes.Loginjudge)
 	}
 
 	registeredGroup := router.Group("/registered")
 	{
-		registeredGroup.POST("/provinces",apiHandle(), controller.Registered.Provinces)
+		registeredGroup.POST("/provinces",apiHandle("RegisteredProvinces"), controller.Registered.Provinces)
+		registeredGroup.POST("/registered",apiHandle("RegisteredRegistered"), controller.Registered.Registered)
 	}
 
 	dynamicGroup := router.Group("/dynamic")
 	{
-		dynamicGroup.POST("/getdynamic",apiHandle(), controller.Dynamic.Getdynamic)
-		dynamicGroup.POST("/posting",apiHandle(), controller.Dynamic.Posting)
+		dynamicGroup.POST("/getdynamic",apiHandle("DynamicGetdynamic"), controller.Dynamic.Getdynamic)
+		dynamicGroup.POST("/posting",apiHandle("DynamicPosting"), controller.Dynamic.Posting)
 	}
 
 
 	http.ListenAndServe(":"+port(), router)
 }
 
-func apiHandle() gin.HandlerFunc {
+type resultdata struct {
+	Code int `json:"code"`
+	Status int `json:"status"`
+	Data interface{} `json:"data"`
+}
+
+func result(data interface{},status int,code int) resultdata {
+	result := resultdata{}
+	result.Code = code
+	result.Status = status
+	result.Data = data
+	return result
+}
+
+func apiHandle(authority string) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		//需要忽略验证的模块
+		ignoreValidation := map[string] int{
+			"HomesLoginjudge" : 1,
+			"dynamicGetdynamic" : 1,
+		}
+		var user model.Registered
+		Token :=  c.Param("Token")
+		if Token != "" {
+			user.Userid = "100177"
+		} else if ignoreValidation[authority] == 1 {
+			user.Userid = ""
+		} else {
+			//强制登录
+			data :=result("",0,0)
+			c.JSON(http.StatusOK, data)
+			c.Abort()
+			return
+		}
+		c.Set("user", user)
+		c.Next()
 		errs := make([]string, 0, len(c.Errors))
 		for _, e := range c.Errors {
 			switch e.Err {

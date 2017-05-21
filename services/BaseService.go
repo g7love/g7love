@@ -29,13 +29,14 @@ func isLogin(c *gin.Context,authority string) User {
 	}
 	Token :=  c.Param("Token")
 	user := User{}
-	Token = "lzhx"
 	if Token != "" {
-		user.Id = "100"
+		user.Id = "100177"
 		user.Username = "wj"
+		c.Abort()
 	} else if ignoreValidation[authority] == 1 {
-		user.Id = "100"
+		user.Id = ""
 		user.Username = ""
+		c.Abort()
 	} else {
 		//强制登录
 		data :=result("",0,0)
@@ -84,4 +85,28 @@ func TimeDifference(startdate int64, enddate int64 ) string {
 		}
 	}
 	return timeDifference
+}
+
+/**
+ *  字符串截取 2017-5-21 14:19
+ */
+func SubstrString(str string,begin,length int) string {
+	// 将字符串的转换成[]rune
+	rs := []rune(str)
+	lth := len(rs)
+
+	// 简单的越界判断
+	if begin < 0 {
+		begin = 0
+	}
+	if begin >= lth {
+		begin = lth
+	}
+	end := begin + length
+	if end > lth {
+		end = lth
+	}
+
+	// 返回子串
+	return string(rs[begin:end])
 }

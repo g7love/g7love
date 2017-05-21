@@ -135,7 +135,7 @@ $(function () {
     });
     $("#provinces").change( function() {
         var provinces = $('#provinces option:selected').val();
-        load('registered', 'getschool', {'parentid':provinces}, function(resultData) {
+        load('registered', 'provinces', {'parentid':provinces}, function(resultData) {
             resultData = resultData['data'];
             var temp = '';
             for(var i =0; i<resultData.length; i++){

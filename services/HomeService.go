@@ -11,6 +11,6 @@ func LoginJudge(c *gin.Context) Result {
 	if user.Id != ""{
 		return result(1,1,0)
 	} else {
-		return result(0,1,0)
+		return result(0,0,0)
 	}
 }

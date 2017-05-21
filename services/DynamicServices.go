@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"g7love/model"
 	"time"
+	"fmt"
 )
 
 /*
@@ -36,7 +37,8 @@ func Getdynamic(c *gin.Context) Result {
 func Posting(c *gin.Context) Result {
 	user :=  isLogin(c,"dynamicPosting")
 	userId := user.Id
-	content := c.Param("count")
+	content := c.PostForm("count")
+	fmt.Println(content)
 	resultData := model.SavePosting(content,userId)
 	return result(resultData,1,0)
 }

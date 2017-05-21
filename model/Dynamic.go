@@ -3,6 +3,7 @@ package model
 import (
 	"g7love/database"
 	"github.com/jinzhu/gorm"
+	"time"
 )
 
 /**
@@ -59,11 +60,10 @@ func Getdynamic(userId string) []ResultsData {
 	var dynamicArg Dynamic
 	dynamicArg.Userid = userId
 	db.Table("dynamic").Select("dynamic.id,dynamic.userid,content,pic1,pic2,pic3,pic4,dynamic.createtime," +
-			"praise,forwardingNum,reportNum,registered.headPortrait,registered.backgroundImage,registered.motto," +
+			"praise,forwarding_num,report_num,registered.head_portrait,registered.background_image,registered.motto," +
 			"registered.nickname,registered.birthday,registered.gender,school.name AS school").
 			Joins("LEFT JOIN registered ON registered.userid = dynamic.userid").
 			Joins("LEFT JOIN `school` ON registered.school = school.id").
-			Where("dynamic.deleted = ?",0).
 			Where(&dynamicArg).Scan(&result)
 	return result
 }
@@ -72,6 +72,7 @@ func SavePosting( content string,userId string) int {
 	var SavePosting  Dynamic
 	SavePosting.Content  = content
 	SavePosting.Userid = userId
+	SavePosting.Createtime = time.Now().Unix()
 	db := database.GetDB()
 	db.Save(&SavePosting)
 	var result int

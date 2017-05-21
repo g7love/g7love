@@ -15,7 +15,7 @@ type School struct {
 
 type ResultSchool struct {
 	Name		string	`json:"name"`	//省份学校专业
-	Parentid	int		`json:"parentid"`  		//父id
+	Id	int		`json:"id"`  		//
 }
 
 func GetProvinces(parentid string) []ResultSchool {
@@ -26,6 +26,6 @@ func GetProvinces(parentid string) []ResultSchool {
 	}
 	var result []ResultSchool
 	db := database.GetDB()
-	db.Select("name,parentid").Where("parentid = ?",parent).Find(&school).Scan(&result)
+	db.Select("name,id").Where("parentid = ?",parent).Find(&school).Scan(&result)
 	return result
 }
