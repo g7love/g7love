@@ -54,6 +54,10 @@ func main() {
 		dynamicGroup.POST("/posting",apiHandle("DynamicPosting"), controller.Dynamic.Posting)
 	}
 
+	EvaluationGroup := router.Group("/evaluation")
+	{
+		EvaluationGroup.POST("/evaluation",apiHandle("EvaluationEvaluation"), controller.Evaluation.Evaluation)
+	}
 
 	http.ListenAndServe(":"+port(), router)
 }

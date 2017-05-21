@@ -28,3 +28,20 @@ func ResultDynamicLog(userid string, dynamicId int) Dynamiclog {
 	db.Where(argsDynamiclog).First(&argsDynamiclog)
 	return  argsDynamiclog
 }
+
+/**
+ * 点赞等处理
+ */
+
+func SaveDoEevaluation(userId string,dynamicId,typeData int)  {
+	var argsDynamiclog Dynamiclog
+	if typeData == 1 {
+		argsDynamiclog.Userid = userId
+		argsDynamiclog.DynamicId = dynamicId
+		argsDynamiclog.Praise = 1
+	} else if typeData == 2 {
+		argsDynamiclog.Userid = userId
+		argsDynamiclog.DynamicId = dynamicId
+		argsDynamiclog.Praise = 1
+	}
+}
