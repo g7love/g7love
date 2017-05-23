@@ -163,6 +163,16 @@ $(document).ready(function(){
 
                 });
             },
+            timetrans: function(date){
+                var date = new Date(date*1000);//如果date为10位不需要乘1000
+                var Y = date.getFullYear() + '-';
+                var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+                var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+                var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+                var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+                return Y+M+D+h+m+s;
+            },
             getInformation:function () {
                 var self = this;
                 load('personal', 'getuserinformation', {}, function(resultData) {
@@ -171,7 +181,7 @@ $(document).ready(function(){
                     self.informationData.backgroundImage=resultData.backgroundImage;
                     self.informationData.motto=resultData.motto;
                     self.informationData.nickname=resultData.nickname;
-                    self.informationData.birthday=resultData.birthday.substring(0,10);
+                    self.informationData.birthday=self.timetrans(resultData.birthday).substring(0,10);
                     self.informationData.gender=resultData.gender;
                     self.informationData.school=resultData.school;
                     self.informationData.self=resultData.self;

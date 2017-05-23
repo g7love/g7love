@@ -57,8 +57,13 @@ func main() {
 	EvaluationGroup := router.Group("/evaluation")
 	{
 		EvaluationGroup.POST("/evaluation",apiHandle("EvaluationEvaluation"), controller.Evaluation.Evaluation)
+		EvaluationGroup.POST("/thumbup",apiHandle("EvaluationThumbup"), controller.Evaluation.Thumbup )
 	}
 
+	PersonalGroup := router.Group("/personal")
+	{
+		PersonalGroup.POST("/getuserinformation",apiHandle("PersonalGetuserinformation"), controller.Personal.Getuserinformation)
+	}
 	http.ListenAndServe(":"+port(), router)
 }
 

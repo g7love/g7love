@@ -2,6 +2,7 @@ package model
 import (
 	"github.com/jinzhu/gorm"
 	"g7love/database"
+	"time"
 )
 
 type Registered struct {
@@ -39,5 +40,38 @@ func RegisteredSave(provinces,school int ,birthday int64,email,nickname,userId s
 	} else {
 		result = 1
 	}
+	return result
+}
+
+/**
+ *获取用户基本信息
+ */
+
+type  Getuserinfo struct {
+	Userid string `json:"userid"` //用户id
+	Nickname string `json:"nickname"` //昵称
+	Email  string `json:"email"` //邮箱
+	Provinces int `json:"provinces"`  //省份
+	School string `json:"school"`  //学校
+	Birthday int64  `json:"birthday"`//生日
+	Gender  int `json:"gender"` //性别: 0,男 1,女
+	Motto string `json:"motto"` //个性签名
+	HeadPortrait string  `json:"headPortrait"` //头像
+	BackgroundImage string `json:"backgroundImage"` //背景条
+	Thumb int `json:"thumb"` //主页点赞
+	Self int `json:"self"`
+	CreatedAt time.Time `json:"createtime"`
+}
+
+func Getuserinformation( userId string) Getuserinfo {
+	var result Getuserinfo
+	db := database.GetDB()
+	var registeredArg Registered
+	registeredArg.Userid = userId
+	db.Table("registered").Select("registered.head_portrait,registered.background_image," +
+			"registered.motto,registered.nickname,registered.userid,registered.created_at,registered.birthday,registered.gender," +
+			"registered.thumb,school.name as school").
+			Joins("LEFT JOIN `school` ON registered.school = school.id").
+			Where(&registeredArg).Scan(&result)
 	return result
 }

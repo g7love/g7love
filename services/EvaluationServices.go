@@ -47,3 +47,8 @@ func Evaluation(c *gin.Context) Result {
 	resultData := doEevaluation(userId,id,arg)
 	return result(resultData,1,0)
 }
+
+/*
+func Thumbup(c *gin.Context) Result {
+
+}*/
