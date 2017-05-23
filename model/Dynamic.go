@@ -54,11 +54,12 @@ type ResultsData struct {
 /**
  * 获取帖子
  */
-func Getdynamic(userId string) []ResultsData {
+func Getdynamic(userId string,dynamicId int) []ResultsData {
 	var result []ResultsData
 	db := database.GetDB()
 	var dynamicArg Dynamic
 	dynamicArg.Userid = userId
+	dynamicArg.ID = uint(dynamicId)
 	db.Table("dynamic").Select("dynamic.id,dynamic.userid,content,pic1,pic2,pic3,pic4,dynamic.createtime," +
 			"praise,forwarding_num,report_num,registered.head_portrait,registered.background_image,registered.motto," +
 			"registered.nickname,registered.birthday,registered.gender,school.name AS school").
@@ -74,12 +75,30 @@ func SavePosting( content string,userId string) int {
 	SavePosting.Userid = userId
 	SavePosting.Createtime = time.Now().Unix()
 	db := database.GetDB()
-	db.Save(&SavePosting)
 	var result int
 	if err := db.Save(&SavePosting).Error; err != nil {
 		result = 1
 	} else {
 		result = 0
+	}
+	return result
+}
+
+func UpdateDynamic(id uint,typeData string,praise ,reportNum int) int {
+	var updateDynamic  Dynamic
+	if typeData == "like" {
+		updateDynamic.ID = id
+		updateDynamic.Praise = praise
+	} else if typeData == "report" {
+		updateDynamic.ID = id
+		updateDynamic.ReportNum = reportNum
+	}
+	db := database.GetDB()
+	var result int
+	if err := db.Model(&updateDynamic).Update(&updateDynamic).Error; err != nil {
+		result = 0
+	} else {
+		result = 1
 	}
 	return result
 }

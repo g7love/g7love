@@ -20,8 +20,13 @@ type Dynamiclog struct {
  * 获取点赞等
  */
 
-func ResultDynamicLog(userid string, dynamicId int) Dynamiclog {
+func ResultDynamicLog(userid string, dynamicId int,typeData string) Dynamiclog {
 	var argsDynamiclog Dynamiclog
+	if typeData == "like" {
+		argsDynamiclog.Praise = 1
+	} else if typeData == "report" {
+		argsDynamiclog.ReportNum = 1
+	}
 	argsDynamiclog.Userid = userid
 	argsDynamiclog.DynamicId = dynamicId
 	db := database.GetDB()
@@ -33,15 +38,29 @@ func ResultDynamicLog(userid string, dynamicId int) Dynamiclog {
  * 点赞等处理
  */
 
-func SaveDoEevaluation(userId string,dynamicId,typeData int)  {
-	var argsDynamiclog Dynamiclog
-	if typeData == 1 {
-		argsDynamiclog.Userid = userId
-		argsDynamiclog.DynamicId = dynamicId
-		argsDynamiclog.Praise = 1
-	} else if typeData == 2 {
-		argsDynamiclog.Userid = userId
-		argsDynamiclog.DynamicId = dynamicId
-		argsDynamiclog.Praise = 1
+func SaveDoEevaluation(userId string,dynamicId int,typeData string,
+		saveUpdate int,DynamicLogId uint)  int {
+	var updtaDynamiclog Dynamiclog
+	updtaDynamiclog.Userid = userId
+	updtaDynamiclog.ID = DynamicLogId
+	updtaDynamiclog.DynamicId = dynamicId
+	if typeData == "like" {
+		updtaDynamiclog.Praise = 1
+	} else if typeData == "report" {
+		updtaDynamiclog.ReportNum = 1
 	}
+	db := database.GetDB()
+	var err error
+	if saveUpdate == 1 {
+		err = db.Model(&updtaDynamiclog).Update(&updtaDynamiclog).Error
+	} else {
+		err = db.Save(&updtaDynamiclog).Error
+	}
+	var result int
+	if err != nil {
+		result = 0
+	} else {
+		result = 1
+	}
+	return result
 }

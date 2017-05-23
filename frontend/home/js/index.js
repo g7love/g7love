@@ -148,7 +148,7 @@ $(document).ready(function(){
             },
             evaluation:function (id,arg,index) {
                 var self = this;
-                load('dynamic', 'evaluation', {'id':id,'arg':arg}, function(resultData) {
+                load('evaluation', 'evaluation', {'id':id,'arg':arg}, function(resultData) {
                     //@todo 不能只更新数组的某个属性，带观察，性能影响如何
                     load('dynamic', 'getdynamic', {'id':id}, function(resultData) {
                         var len = resultData['data'].length;

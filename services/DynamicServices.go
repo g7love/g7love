@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"g7love/model"
 	"time"
+	"strconv"
 )
 
 /*
@@ -12,12 +13,13 @@ import (
 func Getdynamic(c *gin.Context) Result {
 	user :=  c.MustGet("user").(User)
 	id := user.Id
-	resultData := model.Getdynamic(id)
+	dynamicId,_ := strconv.Atoi(c.PostForm("id"))
+	resultData := model.Getdynamic(id,dynamicId)
 	currentTime := time.Now().Unix()
 	for i:=0; i < len(resultData);i++ {
 		resultData[i].Time = TimeDifference(resultData[i].Createtime,currentTime)
 		if user.Id != "" {
-			resultDynamicLog := model.ResultDynamicLog(user.Id,resultData[i].Id)
+			resultDynamicLog := model.ResultDynamicLog(user.Id,resultData[i].Id,"")
 			resultData[i].ReportNumTag = resultDynamicLog.ReportNum
 			resultData[i].PraiseTag = resultDynamicLog.Praise
 			resultData[i].ForwardingNumTag = resultDynamicLog.ForwardingNum
