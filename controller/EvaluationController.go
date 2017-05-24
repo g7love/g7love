@@ -23,6 +23,6 @@ func (u *evaluation) Evaluation(c *gin.Context) {
 }
 
 func (u *evaluation) Thumbup(c *gin.Context)  {
-	//result := services.Thumbup(c)
-	//c.JSON(http.StatusOK, "dd")
+	result := services.Thumbup(c)
+	c.JSON(http.StatusOK, result)
 }

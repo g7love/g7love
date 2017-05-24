@@ -5,6 +5,7 @@ import (
 	"g7love/model"
 	"strconv"
 	"fmt"
+	"time"
 )
 
 /*
@@ -48,7 +49,22 @@ func Evaluation(c *gin.Context) Result {
 	return result(resultData,1,0)
 }
 
-/*
-func Thumbup(c *gin.Context) Result {
 
-}*/
+func Thumbup(c *gin.Context) Result {
+	user :=  c.MustGet("user").(User)
+	userId := user.Id
+	thumbupUser := c.PostForm("userid")
+	if thumbupUser == "" {
+		thumbupUser = userId
+	}
+
+	if thumbupUser == ""{
+		return result("",0,0)
+	}
+	year:=time.Now().Year()
+	month:=time.Now().Month()
+	day:=time.Now().Day()
+
+	startTime := year + "-" + month + "-" + day + " "+"00:00"
+	endTime :=
+}
