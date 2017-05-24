@@ -5,7 +5,7 @@ import (
 	"g7love/model"
 	"strconv"
 	"fmt"
-	"time"
+	_ "time"
 )
 
 /*
@@ -50,8 +50,8 @@ func Evaluation(c *gin.Context) Result {
 }
 
 
-func Thumbup(c *gin.Context) Result {
-	user :=  c.MustGet("user").(User)
+//func Thumbup(c *gin.Context)  {
+	/*user :=  c.MustGet("user").(User)
 	userId := user.Id
 	thumbupUser := c.PostForm("userid")
 	if thumbupUser == "" {
@@ -66,5 +66,5 @@ func Thumbup(c *gin.Context) Result {
 	day:=time.Now().Day()
 
 	startTime := year + "-" + month + "-" + day + " "+"00:00"
-	endTime :=
-}
+	endTime :=*/
+//}

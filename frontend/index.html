@@ -1,77 +1,234 @@
 <!DOCTYPE html>
-<html lang="en-US" style="margin: 0px;">
+<html lang="zh" class="no-js">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G7love</title>
-    <!--vue.js-->
-    <script type="text/javascript" src="/public/js/vue/vue.js"></script>
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="/public/js/bootstrap/css/bootstrap.min.css">
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-    <script src="/public/js/jquery/jquery.min.js"></script>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="/public/js/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/home/css/home.css">
-    <link rel="stylesheet" href="/home/css/index.css">
     <script src="/public/js/load/load.js"></script>
     <script type="text/javascript" src="/public/js/layer/layer.js"></script>
     <link rel="stylesheet" href="/public/js/upload/zyupload-1.0.0.min.css " type="text/css">
     <script type="text/javascript" src="/public/js/upload/zyupload-1.0.0.min.js"></script>
-
+    <link rel="stylesheet" href="/home/css/index.css">
+    <link href="navigation/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="navigation/fonts/FontAwesome/font-awesome.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="navigation/css/animate.css" rel="stylesheet">
+    <link href="navigation/css/bootsnav.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="navigation/css/htmleaf-demo.css">
+    <link href="navigation/css/overwrite.css" rel="stylesheet">
+    <link href="navigation/css/style.css" rel="stylesheet">
+    <link href="navigation/skins/color.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="navigation/js/html5shiv.min.js"></script>
+    <script src="navigation/js/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-<nav  style="background: #55acee;height: 80px;" class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div id="header" class="header">
-        <div class="head_center">
-            <div class="head_nav">
-                <ul>
-                    <li>
-                        <a href="javascript:void(0)" onclick="home()"><span class="glyphicon glyphicon-send" style="font-size: 50px;" aria-hidden="true"></span></a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)" onclick="personal()">个人中心</a>
-                    </li>
-                    <li>
-                        <a href="#">完美市场</a>
-                    </li>
-                    <li>
-                        <a>活动</a>
-                        <ul class="submenu">
-                            <li><a href="javascript:void(0)" onclick="activities()">活动详情</a></li>
-                            <li><a href="javascript:void(0)" onclick="createactivities()">创建活动</a></li>
-                            <li><a href="javascript:void(0)" onclick="activities()">活动报名</a></li>
-                        </ul>
-                    </li>
+<body >
+<!-- Start Navigation -->
+<nav style="background: #55acee;" class="navbar navbar-default navbar-sticky white no-background navbar-scrollspy bootsnav">
 
-                    <li>
-                        <a href="javascript:void(0)" onclick="mapchat()">地图聊天</a>
-                    </li>
-                    <li>
-                        <a href="#">关于</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="head_login">
-                <ul class="login_nav">
-                    <li>
-                        <a data-toggle="modal" data-target="#myModal" id="loginId"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> 登录</a>
-                    </li>
-                    <li>
-                        <a data-toggle="modal" data-target="#regist" id="regis"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 注册</a>
-                    </li>
-                    <li>
-                        <a data-toggle="modal" data-target="#posting" id="postingId"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 发帖</a>
-                    </li>
-                </ul>
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
             </div>
         </div>
     </div>
-</nav><!--小导航条-->
+    <!-- End Top Search -->
+
+    <div class="container">
+        <!-- Start Atribute Navigation -->
+        <div class="attr-nav">
+            <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                        <i class="fa fa-shopping-bag"></i>
+                        <span class="badge">3</span>
+                    </a>
+                    <ul class="dropdown-menu cart-list">
+                        <li>
+                            <a href="#" class="photo"><img src="navigation/images/thumb/thumb01.jpg" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Delica omtantur </a></h6>
+                            <p>2x - <span class="price">$99.99</span></p>
+                        </li>
+                        <li>
+                            <a href="#" class="photo"><img src="navigation/images/thumb/thumb02.jpg" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Omnes ocurreret</a></h6>
+                            <p>1x - <span class="price">$33.33</span></p>
+                        </li>
+                        <li>
+                            <a href="#" class="photo"><img src="navigation/images/thumb/thumb03.jpg" class="cart-thumb" alt="" /></a>
+                            <h6><a href="#">Agam facilisis</a></h6>
+                            <p>2x - <span class="price">$99.99</span></p>
+                        </li>
+                        <li class="total">
+                            <span class="pull-right"><strong>Total</strong>: $0.00</span>
+                            <a href="#" class="btn btn-default btn-cart">Cart</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                <li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
+            </ul>
+        </div>
+        <!-- End Atribute Navigation -->
+
+        <!-- Start Header Navigation -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="#brand"><span style="font-size: 50px; color:#E8E8E8;"><i class="fa fa-twitter"></i></span></a>
+        </div>
+        <!-- End Header Navigation -->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-menu">
+            <ul style="font-size: 15px;" class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                <li>
+                    <a href="javascript:void(0)" onclick="home()">Home</a>
+                </li>
+                <li><a href="#">About Us</a></li>
+                <li class="dropdown megamenu-fw">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Megamenu</a>
+                    <ul class="dropdown-menu megamenu-content" role="menu">
+                        <li>
+                            <div class="row">
+                                <div class="col-menu col-md-3">
+                                    <h6 class="title">Title Menu One</h6>
+                                    <div class="content">
+                                        <ul class="menu-col">
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- end col-3 -->
+                                <div class="col-menu col-md-3">
+                                    <h6 class="title">Title Menu Two</h6>
+                                    <div class="content">
+                                        <ul class="menu-col">
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- end col-3 -->
+                                <div class="col-menu col-md-3">
+                                    <h6 class="title">Title Menu Three</h6>
+                                    <div class="content">
+                                        <ul class="menu-col">
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-menu col-md-3">
+                                    <h6 class="title">Title Menu Four</h6>
+                                    <div class="content">
+                                        <ul class="menu-col">
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                            <li><a href="#">Custom Menu</a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- end col-3 -->
+                            </div><!-- end row -->
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Dropdowns</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Custom Menu</a></li>
+                        <li><a href="#">Custom Menu</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Sub Menu</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Custom Menu</a></li>
+                                <li><a href="#">Custom Menu</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Sub Menu</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Custom Menu</a></li>
+                                        <li><a href="#">Custom Menu</a></li>
+                                        <li><a href="#">Custom Menu</a></li>
+                                        <li><a href="#">Custom Menu</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Custom Menu</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Custom Menu</a></li>
+                        <li><a href="#">Custom Menu</a></li>
+                        <li><a href="#">Custom Menu</a></li>
+                        <li><a href="#">Custom Menu</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+
+    <!-- Start Side Menu -->
+    <div class="side">
+        <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+        <div class="widget">
+            <h6 class="title">Custom Pages</h6>
+            <ul class="link">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="widget">
+            <h6 class="title">Additional Links</h6>
+            <ul class="link">
+                <li><a href="#">Retina Homepage</a></li>
+                <li><a href="#">New Page Examples</a></li>
+                <li><a href="#">Parallax Sections</a></li>
+                <li><a href="#">Shortcode Central</a></li>
+                <li><a href="#">Ultimate Font Collection</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- End Side Menu -->
+</nav>
+<!-- End Navigation -->
 <div class="content">
     <iframe width="100%" height="100%"></iframe>
 </div>
+<!-- End Demo -->
+
+<script src="http://g7love.com/public/js/jquery/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="navigation/js/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="navigation/bootstrap/js/bootstrap.min.js"></script>
+<script src="navigation/js/bootsnav.js"></script>
 <script type="text/javascript" src="/home/js/home.js"></script>
+
 </body>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top: 200px;">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -167,4 +324,3 @@
 </div>
 
 </html>
-
