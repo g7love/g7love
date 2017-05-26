@@ -26,31 +26,37 @@
 </head>
 <div ms-controller="homedata" role="content">
     <body>
+    <input ms-duplex="@name">
+    <p>Hello,{{@name}}!</p>
+    <ul>
+        <li>sdf</li>
+        <li ms-for="($index,el) in @items">{{$index}}--{{el.school}}</li>
+    </ul>
     <div class="container" id = "width">
         <div class="row masonry-container">
-            <div ms-for="($index,res) in @items">
+            <template v-for="res in items" track-by="$index">
                 <div class="col-md-4 col-sm-6 item">
                     <div class="thumbnail">
-                        <a  data-toggle="modal" data-target="#myModal" style="text-decoration:none;color: #0f0f0f"   ms-on-click="personalInformation(res,$index)">
-                            <img ms-attr="{src: res.speakImg}" alt="" ms-if="res.speakImg">
+                        <a  data-toggle="modal" data-target="#myModal" style="text-decoration:none;color: #0f0f0f"   v-on:click="personalInformation(res,$index)">
+                            <img v-bind:src = res.speakImg alt="" v-if="res.speakImg">
                         </a>
                         <div class="caption">
                             <div style="width: auto;height: 35px;">
                                 <div style="width: 35px; float: left">
                                     <div id="def-html" class="box" data-tooltip="#html-content">
-                                        <img ms-attr="{src: res.headImg}" height="35" width="35"  class="img-circle" data-toggle="tooltip" data-placement="top" ms-if="res.headImg">
+                                        <img v-bind:src = res.headImg height="35" width="35"  class="img-circle" data-toggle="tooltip" data-placement="top" v-if="res.headImg">
                                     </div>
                                     <div id="html-content" style="display:none;">
                                         <div style="width:290px;height: 232px; background: #ffffff;">
                                             <div style="width: 290px;height: 90px;">
-                                                <img ms-attr="{src: res.backgroundImg}" width="290px;" height="90px;" v-show="true">
+                                                <img v-bind:src = res.backgroundImg width="290px;" height="90px;" v-show="true">
                                             </div>
                                             <div style="width: 72px;height: 72px;left: 12px;top: 60px;position:absolute;">
-                                                <img ms-attr="{src: res.headImg}" width="72px;" height="72px;" ms-if="res.headImg">
+                                                <img v-bind:src =res.headImg width="72px;" height="72px;" v-if="res.headImg">
                                             </div>
                                             <div style="width: 185px;height: 72px;left: 85px;top: 95px;position:absolute;">
                                                 <p>
-                                                    <span style="font-size: 16px;color: #292f33;font-weight: 700;" ms-if="res.nickname">{{res.nickname}}</span></br>
+                                                    <span style="font-size: 16px;color: #292f33;font-weight: 700;" v-if="res.nickname">{{res.nickname}}</span></br>
                                                     <span style="font-size: 11px;line-height:15px;color:#8899a6;">{{res.school}}</span>
                                                 </p>
                                             </div>
@@ -67,17 +73,17 @@
 
                                             <div style="width:279px;height: 53px;top: 190px;position:absolute; padding-bottom: 10px;padding-left: 10px;padding-top: 10px;">
                                                 <div style="width: 80px;float: left">
-                                                    <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="res.dynamic">
+                                                    <p style="font-size: 13px;color:#8899a6; text-align:center" v-if="res.dynamic">
                                                         动态</br><span style="color:#1b95e0;font-size: 18px">{{res.dynamic}}</span>
                                                     </p>
                                                 </div>
                                                 <div style="width: 80px;float: left">
-                                                    <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="res.areLookingAt">
+                                                    <p style="font-size: 13px;color:#8899a6; text-align:center" v-if="res.areLookingAt">
                                                         正在关注</br><span style="color:#1b95e0;font-size: 18px">{{res.areLookingAt}}</span>
                                                     </p>
                                                 </div>
                                                 <div style="width: 80px;float: left">
-                                                    <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="res.followers">
+                                                    <p style="font-size: 13px;color:#8899a6; text-align:center" v-if="res.followers">
                                                         关注者</br><span style="color:#1b95e0;font-size: 18px">{{res.followers}}</span>
                                                     </p>
                                                 </div>
@@ -88,20 +94,20 @@
                                 <div style="float: left;width: 200px;padding-left: 5px;">
                                     <div class="box" data-tooltip="#html-content">
                                         <p>
-                                            <span style="color: #292f33; font-weight:bold" ms-if="res.nickname">{{res.nickname}}</span></br>
+                                            <span style="color: #292f33; font-weight:bold" v-if="res.nickname">{{res.nickname}}</span></br>
                                         </p>
                                         <p style="line-height: 0px;">
-                                            <span style="color:#8899a6;" ms-if="res.school">{{res.school}}</span>
+                                            <span style="color:#8899a6;" v-if="res.school">{{res.school}}</span>
                                         </p>
                                     </div>
                                 </div>
                                 <div style="float: right;width: 80px;font-size: 13px;color:#8899a6; text-align:right">
-                                    <p id="ab4c" data-toggle="tooltip" data-placement="top" title="{{res.titleTime}}" ms-if="res.time">{{res.time}}</p>
+                                    <p id="ab4c" data-toggle="tooltip" data-placement="top" title="{{res.titleTime}}" v-if="res.time">{{res.time}}</p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <a  data-toggle="modal" data-target="#myModal1" style="text-decoration:none;color: #0f0f0f" ms-if="res.content"  ms-on-click="personalInformation(res)">
+                                    <a  data-toggle="modal" data-target="#myModal1" style="text-decoration:none;color: #0f0f0f" v-if="res.content"  v-on:click="personalInformation(res)">
                                         <p style="margin-top: 10px; word-wrap:break-word">
                                             {{res.content}}
                                         </p>
@@ -111,27 +117,27 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-4">
                                     <p data-toggle="tooltip" data-placement="top" title="喜欢" style="text-align:center">
-                                        <span ms-if="res.praiseTag==1"><span class="glyphicon glyphicon-heart" style="color: #ff0000;"></span><span style="padding-left: 6px;">{{res.likeNum?res.likeNum:0}}</span></span>
-                                        <span ms-if="res.praiseTag==0"><span ms-on-click="@evaluation(res.id,'like',$index)"><span class="glyphicon glyphicon-heart" style="color: #8899a6;"></span><span  style="padding-left: 6px;">{{res.likeNum?res.likeNum:0}}</span></span></span>
+                                        <span v-if="res.praiseTag==1"><span class="glyphicon glyphicon-heart" style="color: #ff0000;"></span><span style="padding-left: 6px;">{{res.likeNum?res.likeNum:0}}</span></span>
+                                        <span v-else><span v-on:click="evaluation(res.id,'like',$index)"><span class="glyphicon glyphicon-heart" style="color: #8899a6;"></span><span  style="padding-left: 6px;">{{res.likeNum?res.likeNum:0}}</span></span></span>
                                     </p>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <p data-toggle="tooltip" data-placement="top" title="回复" style="text-align:center">
-                                        <span class="glyphicon glyphicon-share-alt" style="color: #ff0000"></span>
-                                        <span class="glyphicon glyphicon-share-alt" style="color: #8899a6" ms-if="res.reply"></span>
+                                        <span class="glyphicon glyphicon-share-alt" style="color: #ff0000" v-if="res.reply"></span>
+                                        <span class="glyphicon glyphicon-share-alt" style="color: #8899a6" v-else></span>
                                     </p>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
                                     <p data-toggle="tooltip" data-placement="top" title="举报" style="text-align:center">
-                                        <span ms-if="res.reportNumTag==1"><span class="glyphicon glyphicon-user" style="color: #ff0000"></span><span style="padding-left: 6px;">{{res.reportNum?res.reportNum:0}}</span></span>
-                                        <span ms-if="res.reportNumTag==0"><span ms-on-click="@evaluation(res.id,'report',$index)"><span class="glyphicon glyphicon-user" style="color: #8899a6"></span><span style="padding-left: 6px;">{{res.reportNum?res.reportNum:0}}</span></span></span>
+                                        <span v-if="res.reportNumTag==1"><span class="glyphicon glyphicon-user" style="color: #ff0000"></span><span style="padding-left: 6px;">{{res.reportNum?res.reportNum:0}}</span></span>
+                                        <span v-else><span v-on:click="evaluation(res.id,'report',$index)"><span class="glyphicon glyphicon-user" style="color: #8899a6"></span><span style="padding-left: 6px;">{{res.reportNum?res.reportNum:0}}</span></span></span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div><!--/.item  -->
-            </div><!--v-for-->
+            </template><!--v-for-->
         </div> <!--/.masonry-container  -->
     </div>
 
@@ -146,24 +152,24 @@
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active" ms-if="information.speakImg"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1" ms-if="information.speakImg1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2" ms-if="information.speakImg2"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="3" ms-if="information.speakImg3"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active" v-if="information.speakImg"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1" v-if="information.speakImg1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2" v-if="information.speakImg2"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="3" v-if="information.speakImg3"></li>
                         </ol>
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" role="listbox">
-                            <div class="item active" ms-if="information.speakImg">
-                                <img ms-attr="{src: information.speakImg}" alt="" width="100%">
+                            <div class="item active" v-if="information.speakImg">
+                                <img v-bind:src = information.speakImg alt="" width="100%">
                             </div>
-                            <div class="item" ms-if="information.speakImg1">
-                                <img ms-attr="{src: information.speakImg1 }" alt="" width="100%">
+                            <div class="item" v-if="information.speakImg1">
+                                <img v-bind:src = information.speakImg1 alt="" width="100%">
                             </div>
-                            <div class="item" ms-if="information.speakImg2">
-                                <img ms-attr="{src: information.speakImg2}"  alt="" width="100%">
+                            <div class="item" v-if="information.speakImg2">
+                                <img v-bind:src = information.speakImg2 alt="" width="100%">
                             </div>
-                            <div class="item" ms-if="information.speakImg3">
-                                <img ms-attr="{src: information.speakImg3}" alt="" width="100%">
+                            <div class="item" v-if="information.speakImg3">
+                                <img v-bind:src = information.speakImg3 alt="" width="100%">
                             </div>
                         </div>
 
@@ -188,11 +194,11 @@
                                         <img v-bind:src = information.backgroundImg width="290px;" height="90px;" v-show="true">
                                     </div>
                                     <div style="width: 72px;height: 72px;left: 12px;top: 60px;position:absolute;">
-                                        <img v-bind:src =information.headImg width="72px;" height="72px;" ms-if="information.headImg">
+                                        <img v-bind:src =information.headImg width="72px;" height="72px;" v-if="information.headImg">
                                     </div>
                                     <div style="width: 185px;height: 72px;left: 85px;top: 95px;position:absolute;">
                                         <p>
-                                            <span style="font-size: 16px;color: #292f33;font-weight: 700;" ms-if="information.nickname">{{information.nickname}}</span></br>
+                                            <span style="font-size: 16px;color: #292f33;font-weight: 700;" v-if="information.nickname">{{information.nickname}}</span></br>
                                             <span style="font-size: 11px;line-height:15px;color:#8899a6;">{{information.school}}</span>
                                         </p>
                                     </div>
@@ -202,23 +208,23 @@
                                         </button>
                                     </div>
                                     <div style="width:290px;height: 50px;left: 12px;top: 140px;position:absolute;">
-                                        <p style="font-size: 12px;line-height:15px; color: #292f33;" ms-if="information.signature">
+                                        <p style="font-size: 12px;line-height:15px; color: #292f33;" v-if="information.signature">
                                             {{information.signature}}                                    </p>
                                     </div>
 
                                     <div style="width:279px;height: 53px;top: 190px;position:absolute; padding-bottom: 10px;padding-left: 10px;padding-top: 10px;">
                                         <div style="width: 80px;float: left">
-                                            <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="information.dynamic">
+                                            <p style="font-size: 13px;color:#8899a6; text-align:center" v-if="information.dynamic">
                                                 动态</br><span style="color:#1b95e0;font-size: 18px">{{information.dynamic}}</span>
                                             </p>
                                         </div>
                                         <div style="width: 80px;float: left">
-                                            <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="information.areLookingAt">
+                                            <p style="font-size: 13px;color:#8899a6; text-align:center" v-if="information.areLookingAt">
                                                 正在关注</br><span style="color:#1b95e0;font-size: 18px">{{information.areLookingAt}}</span>
                                             </p>
                                         </div>
                                         <div style="width: 80px;float: left">
-                                            <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="information.followers">
+                                            <p style="font-size: 13px;color:#8899a6; text-align:center" v-if="information.followers">
                                                 关注者</br><span style="color:#1b95e0;font-size: 18px">{{information.followers}}</span>
                                             </p>
                                         </div>
@@ -248,20 +254,20 @@
                     <div class="row">
                         <div class="col-md-4 col-sm-6">
                             <p data-toggle="tooltip" data-placement="top" title="喜欢" style="text-align:center">
-                                <span ms-if="information.praiseTag==1"><span class="glyphicon glyphicon-heart" style="color: #ff0000;"></span><span style="padding-left: 6px;">{{information.likeNum?information.likeNum:0}}</span></span>
-                                <span v-else><span ms-on-click="@evaluation(information.id,'like',information.index)"><span class="glyphicon glyphicon-heart" style="color: #8899a6;"></span><span style="padding-left: 6px;">{{information.likeNum?information.likeNum:0}}</span></span></span>
+                                <span v-if="information.praiseTag==1"><span class="glyphicon glyphicon-heart" style="color: #ff0000;"></span><span style="padding-left: 6px;">{{information.likeNum?information.likeNum:0}}</span></span>
+                                <span v-else><span v-on:click="evaluation(information.id,'like',information.index)"><span class="glyphicon glyphicon-heart" style="color: #8899a6;"></span><span style="padding-left: 6px;">{{information.likeNum?information.likeNum:0}}</span></span></span>
                             </p>
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <p data-toggle="tooltip" data-placement="top" title="回复" style="text-align:center">
-                                <span class="glyphicon glyphicon-share-alt" style="color: #ff0000" ms-if="information.reply"></span>
+                                <span class="glyphicon glyphicon-share-alt" style="color: #ff0000" v-if="information.reply"></span>
                                 <span class="glyphicon glyphicon-share-alt" style="color: #8899a6" v-else></span>
                             </p>
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <p data-toggle="tooltip" data-placement="top" title="举报" style="text-align:center">
-                                <span ms-if="information.reportNumTag==1"><span class="glyphicon glyphicon-user" style="color: #ff0000"></span><span style="padding-left: 6px;">{{information.reportNum?information.reportNum:0}}</span></span>
-                                <span v-else><span ms-on-click="@evaluation(information.id,'report',information.index)"><span class="glyphicon glyphicon-user" style="color: #8899a6"></span><span style="padding-left: 6px;">{{information.reportNum?information.reportNum:0}}</span></span></span>
+                                <span v-if="information.reportNumTag==1"><span class="glyphicon glyphicon-user" style="color: #ff0000"></span><span style="padding-left: 6px;">{{information.reportNum?information.reportNum:0}}</span></span>
+                                <span v-else><span v-on:click="evaluation(information.id,'report',information.index)"><span class="glyphicon glyphicon-user" style="color: #8899a6"></span><span style="padding-left: 6px;">{{information.reportNum?information.reportNum:0}}</span></span></span>
                             </p>
                         </div>
                     </div>

@@ -1,10 +1,10 @@
 //小提示框
 /*;*/
 
-//绑定
+    //绑定
 
 var vm = avalon.define({
-    $id: "homedata",
+    $id: "test",
     array: [11,22,33],
     items: [
 
