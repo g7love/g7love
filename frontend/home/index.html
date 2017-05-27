@@ -4,12 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>G7love</title>
     <script src="../avalon/dist/avalon.js"></script>
-    <!--vue.js-->
-    <script type="text/javascript" src="../public/js/vue/vue.js"></script>
-    <!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="../public/js/bootstrap/css/bootstrap.min.css">
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="../public/js/jquery/jquery.min.js"></script>
+   <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../public/js/bootstrap/css/bootstrap.min.css">
     <!--图片流-->
     <script src="../public/js/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="../public/js/imagesloaded/masonry.pkgd.min.js"></script>
@@ -24,7 +22,12 @@
     <script src="../public/js/load/load.js"></script>
     <script type="text/javascript" src="../home/js/index.js"></script>
 </head>
-<div ms-controller="homedata" role="content">
+<style>
+    .ms-controller{
+        visibility: hidden
+    }
+</style>
+<div ms-controller="homedata" class="ms-controller" role="content">
     <body>
     <div class="container" id = "width">
         <div class="row masonry-container">
@@ -86,17 +89,21 @@
                                     </div>
                                 </div>
                                 <div style="float: left;width: 200px;padding-left: 5px;">
+<!--
                                     <div class="box" data-tooltip="#html-content">
+-->
                                         <p>
                                             <span style="color: #292f33; font-weight:bold" ms-if="res.nickname">{{res.nickname}}</span></br>
                                         </p>
                                         <p style="line-height: 0px;">
                                             <span style="color:#8899a6;" ms-if="res.school">{{res.school}}</span>
                                         </p>
+<!--
                                     </div>
+-->
                                 </div>
                                 <div style="float: right;width: 80px;font-size: 13px;color:#8899a6; text-align:right">
-                                    <p id="ab4c" data-toggle="tooltip" data-placement="top" title="{{res.titleTime}}" ms-if="res.time">{{res.time}}</p>
+                                    <p id="ab4c" data-toggle="tooltip" data-placement="top" ms-attr="{title:res.titleTime}" ms-if="res.time"> {{res.time}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -249,19 +256,19 @@
                         <div class="col-md-4 col-sm-6">
                             <p data-toggle="tooltip" data-placement="top" title="喜欢" style="text-align:center">
                                 <span ms-if="information.praiseTag==1"><span class="glyphicon glyphicon-heart" style="color: #ff0000;"></span><span style="padding-left: 6px;">{{information.likeNum?information.likeNum:0}}</span></span>
-                                <span v-else><span ms-on-click="@evaluation(information.id,'like',information.index)"><span class="glyphicon glyphicon-heart" style="color: #8899a6;"></span><span style="padding-left: 6px;">{{information.likeNum?information.likeNum:0}}</span></span></span>
+                                <span ms-if="information.praiseTag==0"><span ms-on-click="@evaluation(information.id,'like',information.index)"><span class="glyphicon glyphicon-heart" style="color: #8899a6;"></span><span style="padding-left: 6px;">{{information.likeNum?information.likeNum:0}}</span></span></span>
                             </p>
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <p data-toggle="tooltip" data-placement="top" title="回复" style="text-align:center">
                                 <span class="glyphicon glyphicon-share-alt" style="color: #ff0000" ms-if="information.reply"></span>
-                                <span class="glyphicon glyphicon-share-alt" style="color: #8899a6" v-else></span>
+                                <span class="glyphicon glyphicon-share-alt" style="color: #8899a6" ms-if="information.reply == 0"></span>
                             </p>
                         </div>
                         <div class="col-md-4 col-sm-6">
                             <p data-toggle="tooltip" data-placement="top" title="举报" style="text-align:center">
                                 <span ms-if="information.reportNumTag==1"><span class="glyphicon glyphicon-user" style="color: #ff0000"></span><span style="padding-left: 6px;">{{information.reportNum?information.reportNum:0}}</span></span>
-                                <span v-else><span ms-on-click="@evaluation(information.id,'report',information.index)"><span class="glyphicon glyphicon-user" style="color: #8899a6"></span><span style="padding-left: 6px;">{{information.reportNum?information.reportNum:0}}</span></span></span>
+                                <span ms-if="information.reportNumTag==0"><span ms-on-click="@evaluation(information.id,'report',information.index)"><span class="glyphicon glyphicon-user" style="color: #8899a6"></span><span style="padding-left: 6px;">{{information.reportNum?information.reportNum:0}}</span></span></span>
                             </p>
                         </div>
                     </div>

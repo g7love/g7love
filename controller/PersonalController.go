@@ -13,9 +13,7 @@ import (
 var Personal personal = personal{}
 type personal struct{}
 
-/**
- * 点赞,举报,转发 2017-05-21 17:01
- */
+
 func (u *personal) Getuserinformation(c *gin.Context) {
 	result := services.Getuserinformation(c)
 	c.JSON(http.StatusOK, result)
