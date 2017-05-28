@@ -4,6 +4,7 @@ import (
 	"g7love/database"
 	"github.com/jinzhu/gorm"
 	"time"
+	"strings"
 )
 
 /**
@@ -69,11 +70,23 @@ func Getdynamic(userId string,dynamicId int) []ResultsData {
 	return result
 }
 
-func SavePosting( content string,userId string) int {
+func SavePosting( content string,userId string,pic []string) int {
 	var SavePosting  Dynamic
 	SavePosting.Content  = content
 	SavePosting.Userid = userId
 	SavePosting.Createtime = time.Now().Unix()
+	for i :=0; i < 4 && i < len(pic); i++ {
+		switch i {
+			case 0:
+				SavePosting.Pic1= strings.Replace(pic[0], "\"", "", -1)
+		case 1:
+				SavePosting.Pic2 = strings.Replace(pic[1], "\"", "", -1)
+			case 2:
+				SavePosting.Pic3 = strings.Replace(pic[2], "\"", "", -1)
+			case 3:
+				SavePosting.Pic4 = strings.Replace(pic[3], "\"", "", -1)
+		}
+	}
 	db := database.GetDB()
 	var result int
 	if err := db.Save(&SavePosting).Error; err != nil {

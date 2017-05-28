@@ -64,6 +64,13 @@ func main() {
 	{
 		PersonalGroup.POST("/getuserinformation",apiHandle("PersonalGetuserinformation"), controller.Personal.Getuserinformation)
 	}
+
+	UploadGroup := router.Group("/upload")
+	{
+		UploadGroup.OPTIONS("/upload",apiHandle("UploadUpload"), controller.Upload.Upload)
+		UploadGroup.POST("/upload",apiHandle("UploadUpload"), controller.Upload.Upload)
+	}
+
 	http.ListenAndServe(":"+port(), router)
 }
 

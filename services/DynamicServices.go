@@ -39,6 +39,7 @@ func Posting(c *gin.Context) Result {
 	user :=  c.MustGet("user").(User)
 	userId := user.Id
 	content := c.PostForm("count")
-	resultData := model.SavePosting(content,userId)
+	pic := c.PostFormArray("data[]")
+	resultData := model.SavePosting(content,userId,pic)
 	return result(resultData,1,0)
 }
