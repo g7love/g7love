@@ -25,3 +25,12 @@ func (u *registered) Registered(c *gin.Context) {
 	result := services.Registered(c)
 	c.JSON(http.StatusOK, result)
 }
+
+
+/*
+ * 登录
+ */
+func (u *registered) Login(c *gin.Context) {
+	result := services.Login(c)
+	c.JSON(http.StatusOK, result)
+}

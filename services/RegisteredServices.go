@@ -54,3 +54,11 @@ func Registered(c *gin.Context) Result {
 	resultData := model.RegisteredSave(provinces,school,birthday.Unix(),email,nickname,userId)
 	return result(resultData,1,0)
 }
+
+
+func Login(c *gin.Context) Result {
+	username := c.PostForm("LoginForm[username]")
+	password := c.PostForm("LoginForm[password]")
+	resultData := model.UserLogin(username,password)
+	return result(resultData,1,0)
+}

@@ -75,3 +75,18 @@ func Getuserinformation( userId string) Getuserinfo {
 			Where(&registeredArg).Scan(&result)
 	return result
 }
+
+
+type Login struct {
+	Userid string `json:"userid"` //用户id
+	Nickname string `json:"nickname"` //昵称
+	Token string `json:"token"`
+}
+
+func UserLogin(username,password string) Login {
+	var result Login
+	result.Userid = username
+	result.Nickname = password
+	result.Token = username+password
+	return result
+}

@@ -66,7 +66,7 @@ func Getdynamic(userId string,dynamicId int) []ResultsData {
 			"registered.nickname,registered.birthday,registered.gender,school.name AS school").
 			Joins("LEFT JOIN registered ON registered.userid = dynamic.userid").
 			Joins("LEFT JOIN `school` ON registered.school = school.id").
-			Where(&dynamicArg).Scan(&result)
+			Where(&dynamicArg).Order("dynamic.created_at desc").Scan(&result)
 	return result
 }
 

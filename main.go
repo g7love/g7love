@@ -46,6 +46,7 @@ func main() {
 	{
 		registeredGroup.POST("/provinces",apiHandle("RegisteredProvinces"), controller.Registered.Provinces)
 		registeredGroup.POST("/registered",apiHandle("RegisteredRegistered"), controller.Registered.Registered)
+		registeredGroup.POST("/login",apiHandle("RegisteredLogin"), controller.Registered.Login)
 	}
 
 	dynamicGroup := router.Group("/dynamic")
@@ -103,13 +104,16 @@ func apiHandle(authority string) gin.HandlerFunc {
 			"RegisteredProvinces" : 1,
 			"RegisteredRegistered":1,
 			"DynamicGetdynamic":1,
+			"RegisteredLogin":1,
+			"UploadUpload":1,
 		}
 		var userData services.User
-		Token :=  c.Param("Token")
-		Token = "aaaaa"
-		if Token != "" {
+		Token :=  c.PostForm("Token")
+		if Token == "10020" {
+			userData.Id = "100171"
+		} else if Token == "2011312050521"{
 			userData.Id = "100177"
-		} else if ignoreValidation[authority] == 1 {
+		}else if ignoreValidation[authority] == 1 {
 			userData.Id = ""
 		} else {
 			//强制登录

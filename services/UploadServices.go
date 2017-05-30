@@ -60,6 +60,5 @@ func Upload(c *gin.Context) string{
 		defer f.Close()
 		io.Copy(f, file)
 	}
-
 	return "/uploads/"+filename
 }

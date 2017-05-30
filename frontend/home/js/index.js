@@ -4,6 +4,15 @@ var vm = avalon.define({
     items: [
 
     ],
+    PersonalInfo:{
+        backgroundImg:'',
+        headImg:'',
+        signature:'',
+        school:'',
+        dynamic:'',
+        areLookingAt:'',
+        followers:''
+    },
     information: {
         index:'',
         id:'',
@@ -28,6 +37,21 @@ var vm = avalon.define({
         areLookingAt:'',
         followers:'',
         signature:''
+    },
+    getPersonalInfo: function (tag,index) {
+        this.PersonalInfo.backgroundImg = tag.backgroundImg;
+        this.PersonalInfo.headImg=tag.headImg;
+        this.PersonalInfo.likeNum = tag.likeNum;
+        this.PersonalInfo.school=tag.school;
+        this.PersonalInfo.signature = tag.signature;
+        this.PersonalInfo.dynamic=50;
+        this.PersonalInfo.areLookingAt=200;
+        this.PersonalInfo.followers=10;
+        this.PersonalInfo.nickname = tag.nickname;
+        $('*').darkTooltip({
+            gravity:"north",
+            theme:"light",
+        });
     },
     timetrans: function(date){
         var date = new Date(date*1000);//如果date为10位不需要乘1000
@@ -128,15 +152,18 @@ var vm = avalon.define({
         this.information.dynamic=50;
         this.information.areLookingAt=200;
         this.information.followers=10;
+        console.log(this.information);
         $('*').darkTooltip({
-
+            gravity:"north",
+            theme:"light",
+            animation:"flipIn",
         });
     },
     evaluation:function (id,arg,index) {
         var self = this;
         load('evaluation', 'evaluation', {'id':id,'arg':arg}, function(resultData) {
             //@todo 不能只更新数组的某个属性，带观察，性能影响如何
-            load('dynamic', 'getdynamic', {'id':id}, function(resultData) {
+            load('dynamic', 'getdynamic', {'id':id,'tag':1}, function(resultData) {
                 var len = resultData['data'].length;
                 resultData = resultData['data'];
                 if (len >= 1) {
@@ -162,7 +189,6 @@ var vm = avalon.define({
                     self.items[index].praiseTag= resultData[0].praiseTag;
                     self.items[index].forwardingNumTag= resultData[0].forwardingNumTag;
                     self.personalInformation(self.items[index], index);
-                    resultData['data'].length = 0;
                 } else {
                     layer.msg('获取数据失败', {
                         offset: 0,
@@ -177,7 +203,7 @@ var vm = avalon.define({
 //
 //我也不知道为什么要放在在这里
 $('*').darkTooltip({
-
+    gravity:"north",
 });
 $("[data-toggle='tooltip']").tooltip();
 vm.$watch('onReady', function(){

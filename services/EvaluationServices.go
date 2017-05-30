@@ -4,7 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"g7love/model"
 	"strconv"
-	"fmt"
 	_ "time"
 )
 
@@ -14,10 +13,9 @@ import (
 func doEevaluation(userId string,id int ,typeData string) int {
 	resultDynamicLog := model.ResultDynamicLog(userId,id,"")
 	firstDynamicLog := model.ResultDynamicLog(userId,id,typeData)
-	getFirstDynamic := model.Getdynamic(userId,id)
+	//获取帖子时候不需要用户id
+	getFirstDynamic := model.Getdynamic("",id)
 	var  result  int
-	fmt.Println(resultDynamicLog)
-	fmt.Println(firstDynamicLog)
 	if resultDynamicLog.ID != 0 {
 		//更新 1
 		if firstDynamicLog.ID == 0 {

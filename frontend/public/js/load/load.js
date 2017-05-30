@@ -2,6 +2,7 @@ function load(module, method, params, callback) {
     module = module || 'index';
     method = method || 'index';
     params = params || {};
+    params['Token'] = getCookie('Token');
     callback = callback || false;
     var self = this,
         result = false;
@@ -45,3 +46,13 @@ function load(module, method, params, callback) {
         }
     });
 };
+
+//获取Cookie
+function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+    if(arr=document.cookie.match(reg))
+        return unescape(arr[2]);
+    else
+        return null;
+}

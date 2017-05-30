@@ -12,9 +12,14 @@ import (
  */
 func Getdynamic(c *gin.Context) Result {
 	user :=  c.MustGet("user").(User)
-	id := user.Id
+	//判断主页还是个人主页
+	tag,_ := strconv.Atoi(c.PostForm("tag"))
+	var userId string
+	if tag != 1 {
+		userId = user.Id
+	}
 	dynamicId,_ := strconv.Atoi(c.PostForm("id"))
-	resultData := model.Getdynamic(id,dynamicId)
+	resultData := model.Getdynamic(userId,dynamicId)
 	currentTime := time.Now().Unix()
 	for i:=0; i < len(resultData);i++ {
 		resultData[i].Time = TimeDifference(resultData[i].Createtime,currentTime)

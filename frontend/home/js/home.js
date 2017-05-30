@@ -226,9 +226,10 @@ $(function () {
             tag = 1;
         }
         if(!tag){
-            load('login', 'login', login, function(resultData) {
+            load('registered', 'login', login, function(resultData) {
                 if(resultData['data']){
-                    layer.msg(resultData['data'], {
+                    setCookie('Token',resultData['data']['token']);
+                    layer.msg("登录成功", {
                         offset: 0,
                         shift: 12
                     });
