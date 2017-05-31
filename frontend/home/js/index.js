@@ -11,11 +11,13 @@ var vm = avalon.define({
         school:'',
         dynamic:'',
         areLookingAt:'',
-        followers:''
+        followers:'',
+        userid:''
     },
     information: {
         index:'',
         id:'',
+        userid:'',
         speakImg:'',
         speakImg1:'',
         speakImg2:'',
@@ -80,6 +82,7 @@ var vm = avalon.define({
                         backgroundImg:resultData[i].backgroundImage,
                         school:resultData[i].school,
                         signature:resultData[i].motto,
+                        userid:resultData[i].userid,
                         dynamic:50,
                         areLookingAt:200,
                         followers:10,
@@ -131,6 +134,7 @@ var vm = avalon.define({
     personalInformation: function (tag,index){
         this.information.index = index;
         this.information.id = tag.id;
+        this.information.userid = tag.userid,
         this.information.speakImg = tag.speakImg;
         this.information.speakImg1 = tag.speakImg1;
         this.information.speakImg2 = tag.speakImg2;
@@ -176,6 +180,7 @@ var vm = avalon.define({
                     self.items[index].backgroundImg= resultData[0].backgroundImage;
                     self.items[index].school= resultData[0].school;
                     self.items[index].signature= resultData[0].motto;
+                    self.items[index].userid = resultData[0].userid;
                     self.items[index].dynamic= 50;
                     self.items[index].areLookingAt= 200;
                     self.items[index].followers= 10;
@@ -197,6 +202,11 @@ var vm = avalon.define({
                 }
             })
         })
+    },
+    goToPersonalCenter:function (uerid) {
+        var href = '/personal/index.html?uerid='+uerid;
+        setCookie('url',href,500000);
+        window.location.href=href;
     },
 })
 

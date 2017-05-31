@@ -3,7 +3,6 @@ package services
 import (
 	"github.com/gin-gonic/gin"
 	"g7love/model"
-	"fmt"
 )
 
 
@@ -20,10 +19,8 @@ func Getuserinformation(c *gin.Context) Result {
 	if userid == "" {
 		userid = user.Id
 	}
-	fmt.Println(userid)
 	if userid != "" {
 		resultData := model.Getuserinformation(userid)
-		fmt.Println(resultData)
 		if resultData.Userid != "" {
 			if userid == user.Id {
 				resultData.Self = 1

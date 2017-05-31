@@ -41,7 +41,9 @@
                             <div style="width: auto;height: 35px;">
                                 <div style="width: 35px; float: left">
                                     <div id="def-html" class="box" data-tooltip="#html-content">
-                                        <img ms-attr="{src: res.headImg}" height="35" width="35"  class="img-circle" data-toggle="tooltip" data-placement="top" ms-if="res.headImg" ms-on-mouseover="@getPersonalInfo(res,$index)">
+                                        <img ms-attr="{src: res.headImg}" height="35" width="35"  class="img-circle"
+                                             data-toggle="tooltip" data-placement="top" ms-if="res.headImg"
+                                             ms-on-mouseover="@getPersonalInfo(res,$index)" ms-on-click="@goToPersonalCenter(res.userid)">
                                     </div>
                                 </div>
                                 <div style="float: left;width: 200px;padding-left: 5px;">

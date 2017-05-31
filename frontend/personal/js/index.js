@@ -39,9 +39,9 @@ var vm = avalon.define({
         thumb:'',
     },
 
-    getData: function() {
+    getData: function(uerid) {
         var self = this;
-        load('dynamic', 'getdynamic', {}, function(resultData) {
+        load('dynamic', 'getdynamic', {"userid":uerid}, function(resultData) {
             var len = resultData['data'].length;
             resultData = resultData['data'];
             if(len >= 1){
@@ -165,9 +165,9 @@ var vm = avalon.define({
         var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
         return Y+M+D+h+m+s;
     },
-    getInformation:function () {
+    getInformation:function (uerid) {
         var self = this;
-        load('personal', 'getuserinformation', {}, function(resultData) {
+        load('personal', 'getuserinformation', {"userid":uerid}, function(resultData) {
             resultData = resultData['data'];
             self.informationData.headPortrait=resultData.headPortrait;
             self.informationData.backgroundImage=resultData.backgroundImage;
@@ -197,6 +197,7 @@ var vm = avalon.define({
 });
 
 vm.$watch('onReady', function(){
-    vm.getInformation();
-    vm.getData();
+    var uerid = GetQueryUrlParamer("uerid");
+    vm.getInformation(uerid);
+    vm.getData(uerid);
 })

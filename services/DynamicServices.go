@@ -15,7 +15,8 @@ func Getdynamic(c *gin.Context) Result {
 	//判断主页还是个人主页
 	tag,_ := strconv.Atoi(c.PostForm("tag"))
 	var userId string
-	if tag != 1 {
+	userId = c.PostForm("userid")
+	if tag != 1 && userId == ""{
 		userId = user.Id
 	}
 	dynamicId,_ := strconv.Atoi(c.PostForm("id"))
