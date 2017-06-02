@@ -12,7 +12,8 @@ var vm = avalon.define({
         dynamic:'',
         areLookingAt:'',
         followers:'',
-        userid:''
+        userid:'',
+        nickname:''
     },
     information: {
         index:'',
@@ -41,19 +42,32 @@ var vm = avalon.define({
         signature:''
     },
     getPersonalInfo: function (tag,index) {
+        $('.postLineInfo').poshytip({
+            className: 'tip-yellowsimple',
+            alignTo:'target',
+            alignX: 'center',
+            alignY: 'bottom',
+            offsetX: 25,
+            offsetY: 8,
+            fade: true,
+            content: function(updateCallback) {
+                window.setTimeout(function() {
+                    updateCallback($('#html-content').html());
+                }, 0);
+                return 'Loading...';
+            }
+        });
+
         this.PersonalInfo.backgroundImg = tag.backgroundImg;
+        this.PersonalInfo.nickname = tag.nickname;
         this.PersonalInfo.headImg=tag.headImg;
         this.PersonalInfo.likeNum = tag.likeNum;
         this.PersonalInfo.school=tag.school;
+        this.PersonalInfo.userid = tag.userid;
         this.PersonalInfo.signature = tag.signature;
         this.PersonalInfo.dynamic=50;
         this.PersonalInfo.areLookingAt=200;
         this.PersonalInfo.followers=10;
-        this.PersonalInfo.nickname = tag.nickname;
-        $('*').darkTooltip({
-            gravity:"north",
-            theme:"light",
-        });
     },
     timetrans: function(date){
         var date = new Date(date*1000);//如果date为10位不需要乘1000
@@ -64,6 +78,24 @@ var vm = avalon.define({
         var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
         var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
         return Y+M+D+h+m+s;
+    },
+    test: function (index) {
+        $('.postLineInfo').poshytip({
+            className: 'tip-yellowsimple',
+            alignTo:'target',
+            alignX: 'center',
+            alignY: 'bottom',
+            offsetX: 25,
+            offsetY: 8,
+            fade: true,
+            content: function(updateCallback) {
+                window.setTimeout(function() {
+                    updateCallback($('#html-content').html());
+                }, 1000);
+                return 'Loading...';
+            }
+        });
+        console.log(index);
     },
     getData: function() {
         var self = this;
@@ -204,6 +236,7 @@ var vm = avalon.define({
         })
     },
     goToPersonalCenter:function (uerid) {
+        console.log(uerid);
         var href = '/personal/index.html?uerid='+uerid;
         setCookie('url',href,500000);
         window.location.href=href;
