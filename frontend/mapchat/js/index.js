@@ -53,7 +53,7 @@ layui.use('layim', function(layim){
         ,copyright: true //是否授权，如果通过官网捐赠获得LayIM，此处可填true
     });
 
-    var socket = new WebSocket('ws://127.0.0.1:9502');
+    var socket = new WebSocket('ws://172.22.3.235:9502');
 
 
 

@@ -65,6 +65,24 @@ function mapchat() {
     }
 }
 
+function lovestory() {
+    if(flg){
+        var href = '/lovestory/index.html';
+        setCookie('url',href,500000);
+        $('iframe').attr('src', href);
+    }else {
+        layer.msg('请登陆后再操作', {
+            offset: 0,
+            shift: 12
+        });
+    }
+}
+
+function about() {
+    var href = '/about/index.html';
+    setCookie('url',href,500000);
+    $('iframe').attr('src', href);
+}
 function createactivities() {
     if(flg){
         var href = '/activities/createactivities.html';
