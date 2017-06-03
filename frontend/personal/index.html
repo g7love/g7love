@@ -13,58 +13,12 @@
     <script type="text/javascript" src="../public/js/layer/layer.js"></script>
     <link rel="stylesheet" type="text/css" href="../public/js/layer/skin/layer.css">
     <!--弹出框 -->
-    <link rel="stylesheet" type="text/css" href="../public/js/darktooltip/darktooltip.css">
-    <script  src="../public/js/darktooltip/jquery.darktooltip.js"></script>
+    <script type="text/javascript" src="../poshytip/src/jquery.poshytip.js"></script>
+    <link rel="stylesheet" href="../poshytip/src/tip-yellowsimple/tip-yellowsimple.css" type="text/css" />
     <script src="../public/js/load/load.js"></script>
     <script type="text/javascript" src="/personal/js/index.js"></script>
 
 </head>
-<style>
-    .about_center{
-        color:#888888;
-    }
-    .about_center .center_top{
-        width:100%;
-        padding-left:20px;
-        padding-top:15px;
-        height:150px;
-    }
-    .about_center .center_top .guli{
-        width:230px;
-        height:120px;
-        float:right;
-        text-align:center;
-    }
-    .about_center .center_top .guli div{
-        height:100px;width:100px;
-        border-radius: 50%;
-        border:5px solid #888;
-        margin-left:65px;
-        padding-top: 5px;
-        cursor:pointer;
-        opacity:0.5;
-    }
-    .about_center .center_top .guli div:hover{
-        opacity:1;
-        color:#F9B34B;
-        border-color:#F9B34B;
-    }
-    .encourage span{
-        margin-top:20px;
-    }
-    .about_center .center_top .guli p{
-        width:200px;
-        text-align:center;
-    }
-    .about_center .center_top .guli div span{
-        font-size: 40px;
-        font-weight:bold;
-        text-align:center;
-    }
-    .ms-controller{
-        visibility: hidden
-    }
-</style>
 <div ms-controller="homedata" class="ms-controller" role="content" >
 <body>
 <div style="width: 100%;height: 280px;position: absolute;">
@@ -127,56 +81,15 @@
                         <div class="caption">
                             <div style="width: auto;height: 35px;">
                                 <div style="width: 35px; float: left">
-                                    <div id="def-html" class="box" data-tooltip="#html-content">
-                                        <img ms-attr="{src: res.headImg}" height="35" width="35" class="img-circle" data-toggle="tooltip" data-placement="top" ms-if="res.headImg">
-                                    </div>
-                                    <div id="html-content" style="display:none;">
-                                        <div style="width:290px;height: 232px; background: #ffffff;">
-                                            <div style="width: 290px;height: 90px;">
-                                                <img ms-attr="{src: res.backgroundImg}" width="290px;" height="90px;" v-show="true">
-                                            </div>
-                                            <div style="width: 72px;height: 72px;left: 12px;top: 60px;position:absolute;">
-                                                <img ms-attr="{src: res.headImg}"  width="72px;" height="72px;" ms-if="res.headImg">
-                                            </div>
-                                            <div style="width: 185px;height: 72px;left: 85px;top: 95px;position:absolute;">
-                                                <p>
-                                                    <span style="font-size: 16px;color: #292f33;font-weight: 700;" ms-if="res.nickname">{{res.nickname}}</span></br>
-                                                    <span style="font-size: 11px;line-height:15px;color:#8899a6;">{{res.school}}</span>
-                                                </p>
-                                            </div>
-                                            <div style="width: 20px;height: 72px;left: 257px;top: 100px;position:absolute;">
-                                                <button type="button" class="btn btn-default btn-sm">
-                                                    <span class="glyphicon glyphicon-user"></span>+
-                                                </button>
-                                            </div>
-                                            <div style="width:290px;height: 50px;left: 12px;top: 140px;position:absolute;">
-                                                <p style="font-size: 12px;line-height:15px; color: #292f33;" ms-if="res.signature">
-                                                    Where the conversation begins. Follow for breaking news, special reports, RTs of our journalists and more from http://NYTimes.com .
-                                                </p>
-                                            </div>
-
-                                            <div style="width:279px;height: 53px;top: 190px;position:absolute; padding-bottom: 10px;padding-left: 10px;padding-top: 10px;">
-                                                <div style="width: 80px;float: left">
-                                                    <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="res.dynamic">
-                                                        动态</br><span style="color:#1b95e0;font-size: 18px">{{res.dynamic}}</span>
-                                                    </p>
-                                                </div>
-                                                <div style="width: 80px;float: left">
-                                                    <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="res.areLookingAt">
-                                                        正在关注</br><span style="color:#1b95e0;font-size: 18px">{{res.areLookingAt}}</span>
-                                                    </p>
-                                                </div>
-                                                <div style="width: 80px;float: left">
-                                                    <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="res.followers">
-                                                        关注者</br><span style="color:#1b95e0;font-size: 18px">{{res.followers}}</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div id="def-html" class="box">
+                                        <img ms-attr="{src: res.headImg}" ms-attr="{id: $index}"
+                                             class="personalInfo" height="35" width="35" class="img-circle"
+                                             ms-if="res.headImg"
+                                             ms-on-mouseover="@getPersonalInfo(res,$index)">
                                     </div>
                                 </div>
                                 <div style="float: left;width: 200px;padding-left: 5px;">
-                                    <div class="box" data-tooltip="#html-content">
+                                    <div class="box">
                                         <p>
                                             <span style="color: #292f33; font-weight:bold" ms-if="res.nickname">{{res.nickname}}</span></br>
                                         </p>
@@ -234,7 +147,49 @@
     </div><!--动态-->
 </div>
 </body>
-
+<div contenteditable="true" id="html-content" style="display:none;z-index:9999">
+    <div  style="width:290px;height: 232px; background: #ffffff;">
+        <div style="width: 290px;height: 90px;">
+            <img  ms-attr="{src: PersonalInfo.backgroundImg}" width="290px;" height="90px;">
+        </div>
+        <div style="width: 72px;height: 72px;left: 12px;top: 60px;position:absolute;">
+            <img ms-attr="{src: PersonalInfo.headImg}" width="72px;" height="72px;">
+        </div>
+        <div style="width: 185px;height: 72px;left: 85px;top: 95px;position:absolute;">
+            <p>
+                <span style="font-size: 16px;color: #292f33;font-weight: 700;">{{PersonalInfo.nickname}}</span></br>
+                <span style="font-size: 11px;line-height:15px;color:#8899a6;">{{PersonalInfo.school}}</span>
+            </p>
+        </div>
+        <div style="width: 20px;height: 72px;left: 257px;top: 100px;position:absolute;">
+            <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-user"></span>+
+            </button>
+        </div>
+        <div style="width:290px;height: 50px;left: 12px;top: 140px;position:absolute;">
+            <p style="font-size: 12px;line-height:15px; color: #292f33;" ms-if="PersonalInfo.signature">
+                {{PersonalInfo.signature}}
+            </p>
+        </div>
+        <div style="width:279px;height: 53px;top: 190px;position:absolute; padding-bottom: 10px;padding-left: 10px;padding-top: 10px;">
+            <div style="width: 80px;float: left">
+                <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="PersonalInfo.dynamic">
+                    动态</br><span style="color:#1b95e0;font-size: 18px">{{PersonalInfo.dynamic}}</span>
+                </p>
+            </div>
+            <div style="width: 80px;float: left">
+                <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="PersonalInfo.areLookingAt">
+                    正在关注</br><span style="color:#1b95e0;font-size: 18px">{{PersonalInfo.areLookingAt}}</span>
+                </p>
+            </div>
+            <div style="width: 80px;float: left">
+                <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="PersonalInfo.followers">
+                    关注者</br><span style="color:#1b95e0;font-size: 18px">{{PersonalInfo.followers}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -243,52 +198,8 @@
             </div>
             <div class="modal-body">
                 <div style="width: auto;height: 35px; ">
-                    <div class="box" data-tooltip="#html-content1" style="width: 35px; float: left">
+                    <div class="box" style="width: 35px; float: left">
                         <img src="https://pbs.twimg.com/media/CthYHkzXEAQw7qE.jpg" class="img-circle" height="35" width="35">
-                    </div>
-                    <div id="html-content1" style="display:none;">
-                        <div style="width:290px;height: 232px; background: #ffffff;">
-                            <div style="width: 290px;height: 90px;">
-                                <img ms-attr="{src: information.backgroundImg}"  width="290px;" height="90px;" v-show="true">
-                            </div>
-                            <div style="width: 72px;height: 72px;left: 12px;top: 60px;position:absolute;">
-                                <img ms-attr="{src: information.headImg}"  width="72px;" height="72px;" ms-if="information.headImg">
-                            </div>
-                            <div style="width: 185px;height: 72px;left: 85px;top: 95px;position:absolute;">
-                                <p>
-                                    <span style="font-size: 16px;color: #292f33;font-weight: 700;" ms-if="information.nickname">{{information.nickname}}</span></br>
-                                    <span style="font-size: 11px;line-height:15px;color:#8899a6;">{{information.school}}</span>
-                                </p>
-                            </div>
-                            <div style="width: 20px;height: 72px;left: 257px;top: 100px;position:absolute;">
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-user"></span>+
-                                </button>
-                            </div>
-                            <div style="width:290px;height: 50px;left: 12px;top: 140px;position:absolute;">
-                                <p style="font-size: 12px;line-height:15px; color: #292f33;" ms-if="information.signature">
-                                    Where the conversation begins. Follow for breaking news, special reports, RTs of our journalists and more from http://NYTimes.com .
-                                </p>
-                            </div>
-
-                            <div style="width:279px;height: 53px;top: 190px;position:absolute; padding-bottom: 10px;padding-left: 10px;padding-top: 10px;">
-                                <div style="width: 80px;float: left">
-                                    <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="information.dynamic">
-                                        动态</br><span style="color:#1b95e0;font-size: 18px">{{information.dynamic}}</span>
-                                    </p>
-                                </div>
-                                <div style="width: 80px;float: left">
-                                    <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="information.areLookingAt">
-                                        正在关注</br><span style="color:#1b95e0;font-size: 18px">{{information.areLookingAt}}</span>
-                                    </p>
-                                </div>
-                                <div style="width: 80px;float: left">
-                                    <p style="font-size: 13px;color:#8899a6; text-align:center" ms-if="information.followers">
-                                        关注者</br><span style="color:#1b95e0;font-size: 18px">{{information.followers}}</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div style="float: left;width: 200px;padding-left: 5px;">
                         <p>

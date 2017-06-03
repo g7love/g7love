@@ -79,24 +79,6 @@ var vm = avalon.define({
         var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
         return Y+M+D+h+m+s;
     },
-    test: function (index) {
-        $('.postLineInfo').poshytip({
-            className: 'tip-yellowsimple',
-            alignTo:'target',
-            alignX: 'center',
-            alignY: 'bottom',
-            offsetX: 25,
-            offsetY: 8,
-            fade: true,
-            content: function(updateCallback) {
-                window.setTimeout(function() {
-                    updateCallback($('#html-content').html());
-                }, 1000);
-                return 'Loading...';
-            }
-        });
-        console.log(index);
-    },
     getData: function() {
         var self = this;
         load('dynamic', 'getdynamic', {'tag':1}, function(resultData) {
@@ -130,9 +112,6 @@ var vm = avalon.define({
                     });
                 }
                 //我也不知道为什么要放在在这里
-                $('*').darkTooltip({
-                    gravity:"north",
-                });
                 $("[data-toggle='tooltip']").tooltip();
                 //用于处理图片流
                 var $container = $('.masonry-container');
@@ -189,11 +168,6 @@ var vm = avalon.define({
         this.information.areLookingAt=200;
         this.information.followers=10;
         console.log(this.information);
-        $('*').darkTooltip({
-            gravity:"north",
-            theme:"light",
-            animation:"flipIn",
-        });
     },
     evaluation:function (id,arg,index) {
         var self = this;
@@ -243,11 +217,11 @@ var vm = avalon.define({
     },
 })
 
+function goToPersonalCenter(userid){
+    vm.goToPersonalCenter(userid);
+}
 //
 //我也不知道为什么要放在在这里
-$('*').darkTooltip({
-    gravity:"north",
-});
 $("[data-toggle='tooltip']").tooltip();
 vm.$watch('onReady', function(){
     vm.getData();

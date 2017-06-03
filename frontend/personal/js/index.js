@@ -38,7 +38,55 @@ var vm = avalon.define({
         createtime:'',
         thumb:'',
     },
-
+    PersonalInfo:{
+        backgroundImg:'',
+        headImg:'',
+        signature:'',
+        school:'',
+        dynamic:'',
+        areLookingAt:'',
+        followers:'',
+        userid:'',
+        nickname:''
+    },
+    getPersonalInfo: function (tag,index) {
+        $('.personalInfo').poshytip({
+            className: 'tip-yellowsimple',
+            alignTo:'target',
+            alignX: 'center',
+            alignY: 'bottom',
+            offsetX: 25,
+            offsetY: 8,
+            fade: true,
+            content: function(updateCallback) {
+                window.setTimeout(function() {
+                    updateCallback($('#html-content').html());
+                }, 0);
+                return 'Loading...';
+            }
+        });
+        this.PersonalInfo.backgroundImg = tag.backgroundImg;
+        this.PersonalInfo.nickname = tag.nickname;
+        this.PersonalInfo.headImg=tag.headImg;
+        this.PersonalInfo.likeNum = tag.likeNum;
+        this.PersonalInfo.school=tag.school;
+        this.PersonalInfo.userid = tag.userid;
+        this.PersonalInfo.signature = tag.signature;
+        this.PersonalInfo.dynamic=50;
+        this.PersonalInfo.areLookingAt=200;
+        this.PersonalInfo.followers=10;
+        console.log(this.PersonalInfo);
+    },
+    timetrans: function(date){
+        var date = new Date(date*1000);//如果date为10位不需要乘1000
+        var Y = date.getFullYear() + '-';
+        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+        var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+        var m = (date.getMinutes() <10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+        var s = (date.getSeconds() <10 ? '0' + date.getSeconds() : date.getSeconds());
+        return Y+M+D+h+m+s;
+    },
     getData: function(uerid) {
         var self = this;
         load('dynamic', 'getdynamic', {"userid":uerid}, function(resultData) {
@@ -60,7 +108,7 @@ var vm = avalon.define({
                         areLookingAt:200,
                         followers:10,
                         time:resultData[i].time,
-                        titleTime:resultData[i].createtime,
+                        titleTime:self.timetrans(resultData[i].createtime),
                         content:resultData[i].content,
                         likeNum:resultData[i].praise,
                         reportNum:resultData[i].reportNum,
@@ -70,12 +118,6 @@ var vm = avalon.define({
                         forwardingNumTag:resultData[i].forwardingNumTag
                     });
                 }
-                $('*').darkTooltip({
-                    gravity:"north",
-                    theme:"light",
-                    animation:"flipIn",
-                });
-                $("[data-toggle='tooltip']").tooltip();
             }else {
                 layer.msg('获取数据失败', {
                     offset: 0,
@@ -109,11 +151,6 @@ var vm = avalon.define({
         this.information.dynamic=50;
         this.information.areLookingAt=200;
         this.information.followers=10;
-        $('*').darkTooltip({
-            gravity:"north",
-            theme:"light",
-            animation:"flipIn",
-        });
     },
     evaluation:function (id,arg,index) {
         var self = this;
